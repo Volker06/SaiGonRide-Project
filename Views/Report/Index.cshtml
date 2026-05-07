@@ -1,0 +1,127 @@
+﻿@{
+    ViewData["Title"] = "Revenue Report";
+}
+
+<div class="container-fluid px-4 py-3">
+
+    <!-- Header -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h2 class="fw-bold text-dark mb-0">Revenue Report</h2>
+            <small class="text-muted">SaigonRide Management Dashboard</small>
+        </div>
+        <span class="text-muted">@DateTime.Now.ToString("dd/MM/yyyy HH:mm")</span>
+    </div>
+
+    <hr class="mb-4" />
+
+    <!-- Tổng quan -->
+    <div class="row g-3 mb-5">
+        <div class="col-md-3">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body">
+                    <p class="text-muted small mb-1">TOTAL USERS</p>
+                    <h3 class="fw-bold mb-0">@ViewBag.TotalUsers</h3>
+                    <small class="text-muted">Registered accounts</small>
+                </div>
+                <div style="height:4px; background:#1A3C8F;
+                border-radius:0 0 4px 4px;"></div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body">
+                    <p class="text-muted small mb-1">TOTAL VEHICLES</p>
+                    <h3 class="fw-bold mb-0">@ViewBag.TotalVehicles</h3>
+                    <small class="text-muted">In fleet</small>
+                </div>
+                <div style="height:4px; background:#27AE60;
+                border-radius:0 0 4px 4px;"></div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body">
+                    <p class="text-muted small mb-1">TOTAL RENTALS</p>
+                    <h3 class="fw-bold mb-0">@ViewBag.TotalRentals</h3>
+                    <small class="text-muted">All time</small>
+                </div>
+                <div style="height:4px; background:#F5A623;
+                border-radius:0 0 4px 4px;"></div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body">
+                    <p class="text-muted small mb-1">TOTAL REVENUE</p>
+                    <h3 class="fw-bold mb-0">
+                        @ViewBag.TotalRevenue.ToString("N0")
+                        <small class="fs-6 text-muted">VND</small>
+                    </h3>
+                    <small class="text-muted">All stations</small>
+                </div>
+                <div style="height:4px; background:#E74C3C;
+                border-radius:0 0 4px 4px;"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Station Table -->
+    <div class="card border-0 shadow-sm">
+        <div class="card-header bg-white border-bottom py-3">
+            <h5 class="fw-bold mb-0">Revenue by Station</h5>
+        </div>
+        <div class="card-body p-0">
+            <table class="table table-hover mb-0">
+                <thead style="background:#f8f9fa;">
+                    <tr>
+                        <th class="px-4 py-3 text-muted small">STATION</th>
+                        <th class="py-3 text-muted small">LOCATION</th>
+                        <th class="py-3 text-muted small">CAPACITY</th>
+                        <th class="py-3 text-muted small">INVENTORY</th>
+                        <th class="py-3 text-muted small">ACTION</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var station in ViewBag.Stations)
+                    {
+                        <tr>
+                            <td class="px-4 py-3 fw-bold">
+                                📍 @station.StationName
+                            </td>
+                            <td class="py-3 text-muted">@station.Location</td>
+                            <td class="py-3">@station.Capacity</td>
+                            <td class="py-3">
+                                @{
+                                    double ratio = (double)station.CurrentInventory
+                                                   / station.Capacity;
+                                }
+                                @if (ratio < 0.2)
+                                {
+                                    <span class="badge bg-danger">
+                                        @station.CurrentInventory / @station.Capacity
+                                    </span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-success">
+                                        @station.CurrentInventory / @station.Capacity
+                                    </span>
+                                }
+                            </td>
+                            <td class="py-3">
+                                <a asp-controller="Report"
+                                       asp-action="StationDetail"
+                                       asp-route-stationId="@station.StationID"
+                                       class="btn btn-sm btn-outline-primary">
+                                    View Detail →
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>

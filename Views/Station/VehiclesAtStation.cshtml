@@ -1,0 +1,82 @@
+﻿@model SaigonRide.Models.Station
+
+@{
+    ViewData["Title"] = "Xe tại trạm " + Model.StationName;
+}
+
+<div class="py-4">
+
+    <nav aria-label="breadcrumb" class="mb-4">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="/Station/SelectStation">
+                    <i class="bi bi-geo-alt me-1"></i>Chọn trạm
+                </a>
+            </li>
+            <li class="breadcrumb-item active">@Model.StationName</li>
+        </ol>
+    </nav>
+
+    <h2 class="fw-bold mb-1">
+        <i class="bi bi-bicycle text-primary me-2"></i>
+        Xe tại trạm @Model.StationName
+    </h2>
+    <p class="text-muted mb-4">
+        <i class="bi bi-pin-map me-1"></i>@Model.Location
+    </p>
+
+    @if (Model.Vehicles == null || !Model.Vehicles.Any(v => v.Status == "Available"))
+    {
+        <div class="alert alert-warning text-center">
+            <i class="bi bi-exclamation-triangle me-2"></i>
+            Không có xe nào khả dụng tại trạm này.
+            <a href="/Station/SelectStation" class="btn btn-outline-primary ms-3 btn-sm">
+                <i class="bi bi-arrow-left me-1"></i> Chọn trạm khác
+            </a>
+        </div>
+    }
+    else
+    {
+        <div class="row">
+            @foreach (var vehicle in Model.Vehicles.Where(v => v.Status == "Available"))
+            {
+                <div class="col-md-4 mb-4">
+                    <div class="card border-0 shadow-sm rounded-4 h-100">
+                        <div class="card-body p-4 text-center">
+
+                            @if (vehicle.Type == "Standard Bike")
+                            {
+                                <i class="bi bi-bicycle text-primary"
+                                   style="font-size: 3rem;"></i>
+                                <h5 class="fw-bold mt-3 text-primary">Standard Bike</h5>
+                            }
+                            else
+                            {
+                                <i class="bi bi-scooter text-warning"
+                                   style="font-size: 3rem;"></i>
+                                <h5 class="fw-bold mt-3 text-warning">E-Scooter</h5>
+                            }
+
+                            <p class="text-muted mb-1">
+                                <i class="bi bi-cash me-1"></i>
+                                <strong>@vehicle.PricePerMinute.ToString("N0")</strong>
+                                VND/phút
+                            </p>
+
+                            <span class="badge bg-success mb-3">
+                                <i class="bi bi-check-circle me-1"></i>Available
+                            </span>
+
+                            <a asp-controller="Rental"
+                               asp-action="Confirm"
+                               asp-route-vehicleId="@vehicle.VehicleID"
+                               class="btn btn-success w-100">
+                                <i class="bi bi-bicycle me-2"></i>Thuê xe này
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>

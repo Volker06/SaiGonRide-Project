@@ -1,0 +1,167 @@
+@model IEnumerable<SaigonRide.Models.Vehicle>
+
+@{
+    ViewData["Title"] = "Vehicles";
+}
+
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger d-flex align-items-center gap-2">
+        <i class="bi bi-x-circle-fill"></i>
+        @TempData["Error"]
+    </div>
+}
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success d-flex align-items-center gap-2">
+        <i class="bi bi-check-circle-fill"></i>
+        @TempData["Success"]
+    </div>
+}
+
+@if (Context.Session.GetString("UserType") == "Admin")
+{
+    <h2 class="fw-bold mb-3">
+        <i class="bi bi-ev-front-fill me-2 text-primary"></i>
+        Vehicle Management
+    </h2>
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <a asp-action="Create" class="btn btn-primary">
+            <i class="bi bi-plus-circle-fill me-1"></i> Thêm xe mới
+        </a>
+        <div class="d-flex gap-2">
+            <a asp-action="Index" asp-route-sort="station"
+                   class="btn btn-outline-primary btn-sm">
+                <i class="bi bi-geo-alt-fill me-1"></i> Station
+            </a>
+            <a asp-action="Index" asp-route-sort="type"
+                   class="btn btn-outline-success btn-sm">
+                <i class="bi bi-tags-fill me-1"></i> Type
+            </a>
+            <a asp-action="Index" class="btn btn-outline-secondary btn-sm">
+                <i class="bi bi-arrow-clockwise"></i>
+            </a>
+        </div>
+    </div>
+}
+else
+{
+    <h2 class="fw-bold mb-3">
+        <i class="bi bi-bicycle me-2 text-primary"></i>
+        Xe có sẵn
+    </h2>
+    <p class="text-muted mb-4">
+        <i class="bi bi-hand-index-thumb me-1"></i>
+        Chọn xe bạn muốn thuê!
+    </p>
+}
+
+<div class="card shadow border-0 rounded-4">
+    <div class="card-body p-0">
+        <table class="table table-hover align-middle mb-0 rounded-4 overflow-hidden">
+            <thead class="table-primary">
+                <tr>
+                    <th><i class="bi bi-hash me-1"></i> ID</th>
+                    <th><i class="bi bi-tag-fill me-1"></i> Loại xe</th>
+                    <th><i class="bi bi-info-circle-fill me-1"></i> Trạng thái</th>
+                    <th><i class="bi bi-cash-coin me-1"></i> Giá/phút</th>
+                    <th><i class="bi bi-geo-alt-fill me-1"></i> Trạm</th>
+                    <th class="text-center"><i class="bi bi-gear-fill me-1"></i> Thao tác</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="fw-bold text-primary">#@item.VehicleID</td>
+
+                        <td>
+                            @if (item.Type == "Standard Bike")
+                            {
+                                <span class="badge bg-primary fs-6 fw-normal">
+                                    <i class="bi bi-bicycle me-1"></i> Standard Bike
+                                </span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-warning text-dark fs-6 fw-normal">
+                                    <i class="bi bi-scooter me-1"></i> E-Scooter
+                                </span>
+                            }
+                        </td>
+
+                        <td>
+                            @if (item.Status == "Available")
+                            {
+                                <span class="badge bg-success">
+                                    <i class="bi bi-check-circle-fill me-1"></i> Available
+                                </span>
+                            }
+                            else if (item.Status == "Rented")
+                            {
+                                <span class="badge bg-danger">
+                                    <i class="bi bi-x-circle-fill me-1"></i> Rented
+                                </span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-secondary">
+                                    <i class="bi bi-wrench-adjustable me-1"></i> Maintenance
+                                </span>
+                            }
+                        </td>
+
+                        <td>
+                            <i class="bi bi-currency-exchange text-warning me-1"></i>
+                            <span class="fw-semibold">@item.PricePerMinute.ToString("N0")</span>
+                            <small class="text-muted">VND/phút</small>
+                        </td>
+
+                        <td>
+                            <i class="bi bi-pin-map-fill text-danger me-1"></i>
+                            @(item.Station?.StationName ?? "N/A")
+                        </td>
+
+                        <td class="text-center">
+                            @if (Context.Session.GetString("UserType") == "Admin")
+                            {
+                                <a asp-action="Edit" asp-route-id="@item.VehicleID"
+                                       class="btn btn-sm btn-warning" title="Chỉnh sửa">
+                                    <i class="bi bi-pencil-fill"></i>
+                                </a>
+                                <a asp-action="Details" asp-route-id="@item.VehicleID"
+                                       class="btn btn-sm btn-info text-white" title="Chi tiết">
+                                    <i class="bi bi-eye-fill"></i>
+                                </a>
+                                <a asp-action="Delete" asp-route-id="@item.VehicleID"
+                                       class="btn btn-sm btn-danger" title="Xóa">
+                                    <i class="bi bi-trash3-fill"></i>
+                                </a>
+                            }
+                            else
+                            {
+                                @if (item.Status == "Available")
+                                {
+                                    <a asp-controller="Rental"
+                                           asp-action="Confirm"
+                                           asp-route-vehicleId="@item.VehicleID"
+                                           class="btn btn-sm btn-success">
+                                        <i class="bi bi-bicycle me-1"></i> Thuê ngay
+                                    </a>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-secondary">
+                                        <i class="bi bi-slash-circle me-1"></i> Không có sẵn
+                                    </span>
+                                }
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

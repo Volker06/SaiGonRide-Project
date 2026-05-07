@@ -1,0 +1,73 @@
+@model SaigonRide.Models.Station
+
+@{
+    ViewData["Title"] = "Create Station";
+}
+
+<div class="container mt-4">
+    <div class="card shadow">
+        <div class="card-header bg-primary text-white">
+            <h3 class="mb-0">Add New Station</h3>
+        </div>
+
+        <div class="card-body">
+            <form asp-action="Create" method="post">
+                <div asp-validation-summary="ModelOnly"
+                     class="alert alert-danger"></div>
+
+                <div class="mb-3">
+                    <label asp-for="StationName" class="form-label"></label>
+                    <input asp-for="StationName"
+                           class="form-control"
+                           placeholder="Enter station name" />
+                    <span asp-validation-for="StationName"
+                          class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Location" class="form-label"></label>
+                    <input asp-for="Location"
+                           class="form-control"
+                           placeholder="Enter station location" />
+                    <span asp-validation-for="Location"
+                          class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Capacity" class="form-label"></label>
+                    <input asp-for="Capacity"
+                           class="form-control"
+                           placeholder="Enter station capacity" />
+                    <span asp-validation-for="Capacity"
+                          class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Current Inventory</label>
+                    <input class="form-control"
+                           value="0"
+                           readonly />
+                    <small class="text-muted">
+                        Vehicles will be added automatically later.
+                    </small>
+                </div>
+
+                <div class="mt-4">
+                    <button type="submit" class="btn btn-success">
+                        Create Station
+                    </button>
+
+                    <a asp-action="Index" class="btn btn-secondary ms-2">
+                        Back to List
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

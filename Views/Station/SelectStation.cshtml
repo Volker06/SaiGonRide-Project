@@ -1,0 +1,88 @@
+﻿@model IEnumerable<SaigonRide.Models.Station>
+
+@{
+    ViewData["Title"] = "Chọn Trạm";
+}
+
+<div class="py-4">
+    <h2 class="fw-bold mb-1">
+        <i class="bi bi-geo-alt-fill text-primary me-2"></i>
+        Chọn Trạm
+    </h2>
+    <p class="text-muted mb-4">Chọn trạm gần bạn nhất để thuê xe</p>
+
+    <div class="row">
+        @foreach (var station in Model)
+        {
+            var availableCount = station.Vehicles?
+                .Count(v => v.Status == "Available") ?? 0;
+
+            <div class="col-md-4 mb-4">
+                <div class="card border-0 shadow-sm rounded-4 h-100">
+                    <div class="card-body p-4">
+
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="rounded-circle bg-primary bg-opacity-10 p-3 me-3">
+                                <i class="bi bi-geo-alt-fill text-primary fs-4"></i>
+                            </div>
+                            <div>
+                                <h5 class="fw-bold mb-0">@station.StationName</h5>
+                                <small class="text-muted">
+                                    <i class="bi bi-pin-map me-1"></i>
+                                    @station.Location
+                                </small>
+                            </div>
+                        </div>
+
+                        <hr />
+
+                        <div class="d-flex justify-content-between mb-2">
+                            <span class="text-muted">
+                                <i class="bi bi-bicycle me-1"></i> Xe có sẵn
+                            </span>
+                            @if (availableCount == 0)
+                            {
+                                <span class="badge bg-danger">Hết xe</span>
+                            }
+                            else if (availableCount <= 2)
+                            {
+                                <span class="badge bg-warning text-dark">
+                                    @availableCount xe
+                                </span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-success">
+                                    @availableCount xe
+                                </span>
+                            }
+                        </div>
+
+                        <div class="d-flex justify-content-between mb-4">
+                            <span class="text-muted">
+                                <i class="bi bi-building me-1"></i> Sức chứa
+                            </span>
+                            <span class="fw-bold">@station.Capacity xe</span>
+                        </div>
+
+                        @if (availableCount > 0)
+                        {
+                            <a href="/Station/VehiclesAtStation/@station.StationID"
+                               class="btn btn-primary w-100">
+                                <i class="bi bi-arrow-right-circle me-2"></i>
+                                Chọn trạm này
+                            </a>
+                        }
+                        else
+                        {
+                            <button class="btn btn-secondary w-100" disabled>
+                                <i class="bi bi-x-circle me-2"></i>
+                                Hết xe
+                            </button>
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

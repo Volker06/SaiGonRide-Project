@@ -1,0 +1,86 @@
+@model IEnumerable<SaigonRide.Models.Station>
+
+@{
+    ViewData["Title"] = "Stations";
+}
+
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger d-flex align-items-center gap-2">
+        <i class="bi bi-x-circle-fill"></i>
+        @TempData["Error"]
+    </div>
+}
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success d-flex align-items-center gap-2">
+        <i class="bi bi-check-circle-fill"></i>
+        @TempData["Success"]
+    </div>
+}
+
+<h2 class="fw-bold mb-3">
+    <i class="bi bi-geo-alt-fill text-primary me-2"></i>
+    Station Management
+</h2>
+
+<a asp-action="Create" class="btn btn-primary mb-3">
+    <i class="bi bi-plus-circle"></i> Add New Station
+</a>
+
+<table class="table table-hover shadow-sm">
+    <thead class="table-light">
+        <tr>
+            <th><i class="bi bi-geo"></i> Name</th>
+            <th><i class="bi bi-pin-map"></i> Location</th>
+            <th><i class="bi bi-box"></i> Capacity</th>
+            <th><i class="bi bi-bicycle"></i> Inventory</th>
+            <th class="text-center"><i class="bi bi-gear"></i> Actions</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="fw-bold">@item.StationName</td>
+                <td>@item.Location</td>
+
+                <td>@item.Capacity</td>
+
+                <td>
+                    @{
+                        var percent = item.Capacity == 0 ? 0 :
+                        (item.CurrentInventory * 100 / item.Capacity);
+                    }
+
+                    <div class="progress" style="height: 20px;">
+                        <div class="progress-bar
+                            @(percent < 30 ? "bg-danger" :
+                                                                                        percent < 70 ? "bg-warning" : "bg-success")"
+                             style="width:@percent%">
+                            @item.CurrentInventory
+                        </div>
+                    </div>
+                </td>
+
+                <td class="text-center">
+                    <a asp-action="Edit" asp-route-id="@item.StationID"
+                           class="btn btn-sm btn-warning">
+                        <i class="bi bi-pencil"></i>
+                    </a>
+
+                    <a asp-action="Details" asp-route-id="@item.StationID"
+                           class="btn btn-sm btn-info text-white">
+                        <i class="bi bi-eye"></i>
+                    </a>
+
+                    <a asp-action="Delete" asp-route-id="@item.StationID"
+                           class="btn btn-sm btn-danger">
+                        <i class="bi bi-trash"></i>
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

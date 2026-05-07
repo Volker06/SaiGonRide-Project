@@ -1,0 +1,227 @@
+﻿@model SaigonRide.Models.Rental
+@using SaigonRide.Models
+
+@{
+    ViewData["Title"] = "Trả xe";
+    var stations = ViewBag.Stations as List<Station> ?? new List<Station>();
+}
+
+<div class="container py-4" style="max-width: 600px;">
+    <h2 class="fw-bold mb-4">
+        <i class="bi bi-arrow-return-left text-danger me-2"></i>
+        Xác nhận trả xe
+    </h2>
+
+    <div class="card shadow border-0 rounded-4 mb-4">
+        <div class="card-body p-4">
+            <h5 class="text-primary mb-3">
+                <i class="bi bi-receipt me-2"></i>
+                Thông tin chuyến đi #@Model.RentalID
+            </h5>
+
+            <table class="table table-borderless">
+                <tr>
+                    <td><strong>Loại xe:</strong></td>
+                    <td>@Model.Vehicle?.Type</td>
+                </tr>
+                <tr>
+                    <td><strong>Trạm xuất phát:</strong></td>
+                    <td>@(Model.Vehicle?.Station?.StationName ?? "N/A")</td>
+                </tr>
+                <tr>
+                    <td><strong><i class="bi bi-clock me-1"></i>Giờ bắt đầu:</strong></td>
+                    <td class="text-success fw-bold">
+                        @Model.StartTime.ToString("HH:mm - dd/MM/yyyy")
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong><i class="bi bi-clock-history me-1"></i>Giờ trả xe:</strong></td>
+                    <td class="text-danger fw-bold">
+                        @(((DateTime)ViewBag.Now).ToString("HH:mm - dd/MM/yyyy"))
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong><i class="bi bi-stopwatch me-1"></i>Thời gian thuê:</strong></td>
+                    <td>@ViewBag.Minutes phút</td>
+                </tr>
+            </table>
+
+            <hr />
+
+            <!-- Giá gốc luôn hiển thị -->
+            <table class="table table-borderless mb-0" id="fareTable">
+                <tr>
+                    <td><strong>Giá gốc:</strong></td>
+                    <td>@(((double)ViewBag.OriginalFare).ToString("N0")) VND</td>
+                </tr>
+                <tr id="discountRow" class="d-none">
+                    <td><strong><i class="bi bi-tag-fill text-success me-1"></i>Giảm 15%:</strong></td>
+                    <td class="text-success" id="discountAmount">- 0 VND</td>
+                </tr>
+                <tr id="finalRow" class="table-success">
+                    <td><strong><i class="bi bi-cash me-1"></i>Tổng tiền:</strong></td>
+                    <td class="fw-bold fs-5 text-success" id="finalFare">
+                        @(((double)ViewBag.OriginalFare).ToString("N0")) VND
+                    </td>
+                </tr>
+            </table>
+
+            <!-- Badge thông báo giảm giá -->
+            <div id="discountBadge" class="d-none mt-2">
+                <span class="badge bg-success fs-6 px-3 py-2">
+                    <i class="bi bi-patch-check-fill me-1"></i>
+                    Trạm này đang thiếu xe — bạn được giảm 15%!
+                </span>
+            </div>
+            <div id="noDiscountBadge" class="d-none mt-2">
+                <span class="badge bg-secondary fs-6 px-3 py-2">
+                    <i class="bi bi-info-circle me-1"></i>
+                    Trạm này đủ xe — không áp dụng giảm giá.
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chọn trạm trả + phương thức thanh toán -->
+    <div class="card shadow border-0 rounded-4 mb-4">
+        <div class="card-body p-4">
+
+            <!-- CHỌN TRẠM TRẢ -->
+            <h5 class="mb-3">
+                <i class="bi bi-geo-alt-fill text-danger me-2"></i>
+                Chọn trạm trả xe
+            </h5>
+            <select id="stationSelect" class="form-select mb-1" required>
+                <option value="">-- Chọn trạm trả --</option>
+                @foreach (var s in stations)
+                {
+                    <option value="@s.StationID"
+                            data-inventory="@s.CurrentInventory"
+                            data-capacity="@s.Capacity">
+                        @s.StationName — @s.Location
+                        (@s.CurrentInventory / @s.Capacity xe)
+                    </option>
+                }
+            </select>
+            <small class="text-muted mb-4 d-block">
+                <i class="bi bi-lightbulb me-1"></i>
+                Trạm có số xe dưới 20% sức chứa sẽ được giảm 15%.
+            </small>
+
+            <hr />
+
+            <!-- CHỌN PHƯƠNG THỨC THANH TOÁN -->
+            <h5 class="mb-3">
+                <i class="bi bi-wallet2 me-2"></i>
+                Chọn phương thức thanh toán
+            </h5>
+
+            <div class="d-flex flex-column gap-3">
+
+                <!-- Cash -->
+                <form asp-action="Return" method="post" class="payment-form">
+                    <input type="hidden" name="rentalId" value="@Model.RentalID" />
+                    <input type="hidden" name="returnStationId" class="stationInput" value="" />
+                    <input type="hidden" name="paymentMethod" value="Cash" />
+                    <button type="submit" class="btn btn-outline-success w-100 py-3 pay-btn" disabled>
+                        <i class="bi bi-cash-coin me-2 fs-5"></i>
+                        <strong>Tiền mặt</strong>
+                        <small class="d-block text-muted">Thanh toán trực tiếp</small>
+                    </button>
+                </form>
+
+                <!-- MoMo -->
+                <form asp-action="Return" method="post" class="payment-form">
+                    <input type="hidden" name="rentalId" value="@Model.RentalID" />
+                    <input type="hidden" name="returnStationId" class="stationInput" value="" />
+                    <input type="hidden" name="paymentMethod" value="MoMo" />
+                    <button type="submit" class="btn btn-outline-danger w-100 py-3 pay-btn"
+                            style="border-color:#ae2070; color:#ae2070;" disabled>
+                        <i class="bi bi-phone me-2 fs-5"></i>
+                        <strong>MoMo</strong>
+                        <small class="d-block text-muted">Ví điện tử MoMo</small>
+                    </button>
+                </form>
+
+                <!-- VNPay -->
+                <form asp-action="Return" method="post" class="payment-form">
+                    <input type="hidden" name="rentalId" value="@Model.RentalID" />
+                    <input type="hidden" name="returnStationId" class="stationInput" value="" />
+                    <input type="hidden" name="paymentMethod" value="VNPay" />
+                    <button type="submit" class="btn btn-outline-primary w-100 py-3 pay-btn"
+                            style="border-color:#0066cc; color:#0066cc;" disabled>
+                        <i class="bi bi-credit-card me-2 fs-5"></i>
+                        <strong>VNPay</strong>
+                        <small class="d-block text-muted">Thanh toán qua VNPay</small>
+                    </button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+    <a asp-action="MyRentals" class="btn btn-secondary w-100">
+        <i class="bi bi-x-circle me-2"></i>Hủy
+    </a>
+</div>
+
+@section Scripts {
+    <script>
+        const originalFare = @ViewBag.OriginalFare;
+
+        document.getElementById('stationSelect').addEventListener('change', function () {
+            const selected = this.options[this.selectedIndex];
+            const stationId = this.value;
+
+            // Cập nhật stationInput cho tất cả form
+            document.querySelectorAll('.stationInput').forEach(el => el.value = stationId);
+
+            // Bật/tắt nút thanh toán
+            const payBtns = document.querySelectorAll('.pay-btn');
+            payBtns.forEach(btn => btn.disabled = !stationId);
+
+            if (!stationId) {
+                document.getElementById('discountRow').classList.add('d-none');
+                document.getElementById('discountBadge').classList.add('d-none');
+                document.getElementById('noDiscountBadge').classList.add('d-none');
+                document.getElementById('finalFare').textContent = formatVND(originalFare) + ' VND';
+                document.getElementById('finalRow').className = 'table-light';
+                return;
+            }
+
+            const inventory = parseInt(selected.dataset.inventory);
+            const capacity = parseInt(selected.dataset.capacity);
+            const hasDiscount = capacity > 0 && inventory < capacity * 0.20;
+
+            const discountRow = document.getElementById('discountRow');
+            const discountBadge = document.getElementById('discountBadge');
+            const noDiscountBadge = document.getElementById('noDiscountBadge');
+            const finalFareEl = document.getElementById('finalFare');
+            const finalRow = document.getElementById('finalRow');
+
+            if (hasDiscount) {
+                const discount = originalFare * 0.15;
+                const finalFare = originalFare - discount;
+
+                document.getElementById('discountAmount').textContent = '- ' + formatVND(discount) + ' VND';
+                finalFareEl.textContent = formatVND(finalFare) + ' VND';
+
+                discountRow.classList.remove('d-none');
+                discountBadge.classList.remove('d-none');
+                noDiscountBadge.classList.add('d-none');
+                finalRow.className = 'table-success';
+            } else {
+                finalFareEl.textContent = formatVND(originalFare) + ' VND';
+
+                discountRow.classList.add('d-none');
+                discountBadge.classList.add('d-none');
+                noDiscountBadge.classList.remove('d-none');
+                finalRow.className = 'table-light';
+            }
+        });
+
+        function formatVND(amount) {
+            return Math.round(amount).toLocaleString('vi-VN');
+        }
+    </script>
+}

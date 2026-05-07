@@ -1,0 +1,155 @@
+@model SaigonRide.Models.Station
+
+@{
+    ViewData["Title"] = "Station Details";
+    double pct = Model.Capacity > 0
+        ? (double)Model.CurrentInventory / Model.Capacity * 100
+        : 0;
+    string badgeClass = pct < 20 ? "bg-danger" : pct < 50 ? "bg-warning text-dark" : "bg-success";
+}
+
+<div class="container py-4" style="max-width: 700px;">
+    <h2 class="fw-bold mb-4">
+        <i class="bi bi-geo-alt-fill text-danger me-2"></i>
+        Chi tiết trạm
+    </h2>
+
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success d-flex align-items-center">
+            <i class="bi bi-check-circle-fill me-2 fs-5"></i>
+            @TempData["Success"]
+        </div>
+    }
+
+    <div class="card shadow border-0 rounded-4 mb-4">
+        <div class="card-body p-4">
+            <h4 class="text-primary mb-4">
+                <i class="bi bi-pin-map-fill me-2"></i>
+                @Model.StationName
+            </h4>
+
+            <table class="table table-borderless">
+                <tr>
+                    <td><i class="bi bi-hash text-secondary me-2"></i><strong>Station ID:</strong></td>
+                    <td class="fw-bold text-primary">#@Model.StationID</td>
+                </tr>
+                <tr>
+                    <td><i class="bi bi-geo-alt-fill text-danger me-2"></i><strong>Địa điểm:</strong></td>
+                    <td>@Model.Location</td>
+                </tr>
+                <tr>
+                    <td><i class="bi bi-building-fill text-info me-2"></i><strong>Sức chứa:</strong></td>
+                    <td>
+                        <i class="bi bi-bicycle me-1"></i>
+                        @Model.Capacity xe
+                    </td>
+                </tr>
+                <tr>
+                    <td><i class="bi bi-boxes text-success me-2"></i><strong>Xe hiện có:</strong></td>
+                    <td>
+                        <span class="badge @badgeClass">
+                            @Model.CurrentInventory / @Model.Capacity
+                        </span>
+                        <small class="text-muted ms-1">(@Math.Round(pct, 0)%)</small>
+                        @if (pct < 20)
+                        {
+                            <br />
+                            <small class="text-danger fw-bold">
+                                <i class="bi bi-tag-fill me-1"></i>Đang áp dụng giảm 15% cho user
+                            </small>
+                        }
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <h5 class="fw-bold mb-3">
+        <i class="bi bi-bicycle text-primary me-2"></i>
+        Danh sách xe tại trạm
+    </h5>
+
+    <div class="card shadow border-0 rounded-4 mb-4">
+        <div class="card-body p-0">
+            <table class="table table-hover align-middle mb-0 rounded-4 overflow-hidden">
+                <thead class="table-dark">
+                    <tr>
+                        <th><i class="bi bi-hash me-1"></i> ID</th>
+                        <th><i class="bi bi-tag-fill me-1"></i> Loại xe</th>
+                        <th><i class="bi bi-info-circle-fill me-1"></i> Trạng thái</th>
+                        <th><i class="bi bi-cash-coin me-1"></i> Giá/phút</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.Vehicles != null && Model.Vehicles.Any())
+                    {
+                        @foreach (var v in Model.Vehicles)
+                        {
+                            <tr>
+                                <td class="fw-bold text-primary">#@v.VehicleID</td>
+                                <td>
+                                    @if (v.Type == "Standard Bike")
+                                    {
+                                        <span class="badge bg-primary">
+                                            <i class="bi bi-bicycle me-1"></i> Standard Bike
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-warning text-dark">
+                                            <i class="bi bi-scooter me-1"></i> E-Scooter
+                                        </span>
+                                    }
+                                </td>
+                                <td>
+                                    @if (v.Status == "Available")
+                                    {
+                                        <span class="badge bg-success">
+                                            <i class="bi bi-check-circle-fill me-1"></i> Available
+                                        </span>
+                                    }
+                                    else if (v.Status == "Rented")
+                                    {
+                                        <span class="badge bg-warning text-dark">
+                                            <i class="bi bi-clock-fill me-1"></i> Rented
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-danger">
+                                            <i class="bi bi-wrench-adjustable me-1"></i> @v.Status
+                                        </span>
+                                    }
+                                </td>
+                                <td>
+                                    <span class="fw-semibold">@v.PricePerMinute.ToString("N0")</span>
+                                    <small class="text-muted">VND/phút</small>
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="4" class="text-center text-muted py-4">
+                                <i class="bi bi-inbox fs-4 d-block mb-2"></i>
+                                Không có xe nào tại trạm này
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="d-flex gap-2">
+        <a asp-action="Edit" asp-route-id="@Model.StationID"
+               class="btn btn-warning flex-fill py-3">
+            <i class="bi bi-pencil-fill me-2"></i> Chỉnh sửa
+        </a>
+        <a asp-action="Index" class="btn btn-secondary flex-fill py-3">
+            <i class="bi bi-arrow-left-circle me-2"></i> Quay lại
+        </a>
+    </div>
+</div>

@@ -1,0 +1,91 @@
+﻿@{
+    ViewData["Title"] = "Station Detail";
+}
+
+<div class="container mt-4">
+
+    <h2 class="fw-bold mb-3">
+        <i class="bi bi-geo-alt-fill text-primary me-2"></i>
+        @ViewBag.Station.StationName
+    </h2>
+
+    <p class="text-muted">
+        <i class="bi bi-pin-map me-1"></i>
+        @ViewBag.Station.Location
+    </p>
+
+    <hr />
+
+    <div class="row g-3">
+
+        <!-- Capacity -->
+        <div class="col-md-4">
+            <div class="card shadow-sm border-0">
+                <div class="card-body text-center">
+                    <i class="bi bi-box-seam text-primary" style="font-size:2rem;"></i>
+                    <h6 class="mt-2 text-muted">Capacity</h6>
+                    <h4 class="fw-bold">@ViewBag.Station.Capacity</h4>
+                </div>
+            </div>
+        </div>
+
+        <!-- Current Inventory -->
+        <div class="col-md-4">
+            <div class="card shadow-sm border-0">
+                <div class="card-body text-center">
+                    <i class="bi bi-bicycle text-success" style="font-size:2rem;"></i>
+                    <h6 class="mt-2 text-muted">Current Vehicles</h6>
+                    <h4 class="fw-bold">@ViewBag.Station.CurrentInventory</h4>
+                </div>
+            </div>
+        </div>
+
+        <!-- Revenue -->
+        <div class="col-md-4">
+            <div class="card shadow-sm border-0">
+                <div class="card-body text-center">
+                    <i class="bi bi-cash-coin text-warning" style="font-size:2rem;"></i>
+                    <h6 class="mt-2 text-muted">Revenue</h6>
+                    <h4 class="fw-bold">
+                        @(((double)ViewBag.TotalRevenue).ToString("N0")) VND
+                    </h4>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <hr class="my-4" />
+
+    <!-- Stats -->
+    <div class="row g-3">
+
+        <div class="col-md-6">
+            <div class="card border-0 shadow-sm p-3">
+                <h6 class="text-muted">
+                    <i class="bi bi-arrow-up-right-circle me-1"></i>
+                    Total Rentals
+                </h6>
+                <h3 class="fw-bold text-primary">@ViewBag.TotalRentals</h3>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card border-0 shadow-sm p-3">
+                <h6 class="text-muted">
+                    <i class="bi bi-arrow-down-left-circle me-1"></i>
+                    Total Returns
+                </h6>
+                <h3 class="fw-bold text-success">@ViewBag.TotalReturns</h3>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="mt-4">
+        <a asp-action="Index" class="btn btn-secondary">
+            <i class="bi bi-arrow-left"></i> Back
+        </a>
+    </div>
+
+</div>

@@ -1,0 +1,63 @@
+@model SaigonRide.Models.Station
+
+@{
+    ViewData["Title"] = "Edit Station";
+}
+
+<h2 class="mb-4">
+    <i class="bi bi-pencil-square me-2 text-warning"></i>Edit Station
+</h2>
+
+<div class="card shadow-lg border-0 rounded-4" style="max-width: 500px;">
+    <div class="card-body p-4">
+        <form asp-action="Edit">
+            <input type="hidden" asp-for="StationID" />
+
+            <!-- Station Name -->
+            <div class="mb-3">
+                <label class="form-label fw-bold">
+                    <i class="bi bi-building me-1"></i>Station Name
+                </label>
+                <input asp-for="StationName" class="form-control" required />
+            </div>
+
+            <!-- Location -->
+            <div class="mb-3">
+                <label class="form-label fw-bold">
+                    <i class="bi bi-geo-alt me-1"></i>Location
+                </label>
+                <input asp-for="Location" class="form-control" />
+            </div>
+
+            <!-- Capacity -->
+            <div class="mb-3">
+                <label class="form-label fw-bold">
+                    <i class="bi bi-box-seam me-1"></i>Capacity
+                </label>
+                <input asp-for="Capacity" type="number" class="form-control" required />
+            </div>
+
+            <!-- Current Inventory (READ ONLY) -->
+            <div class="mb-3">
+                <label class="form-label fw-bold">
+                    <i class="bi bi-bicycle me-1"></i>Current Vehicles
+                </label>
+                <input asp-for="CurrentInventory" type="number"
+                       class="form-control bg-light"
+                       readonly />
+                <small class="text-muted">
+                    This value is automatically updated when vehicles are added or removed.
+                </small>
+            </div>
+
+            <!-- Buttons -->
+            <button type="submit" class="btn btn-warning w-100 fw-bold">
+                <i class="bi bi-save me-1"></i>Save Changes
+            </button>
+
+            <a asp-action="Index" class="btn btn-secondary w-100 mt-2">
+                <i class="bi bi-arrow-left me-1"></i>Back
+            </a>
+        </form>
+    </div>
+</div>

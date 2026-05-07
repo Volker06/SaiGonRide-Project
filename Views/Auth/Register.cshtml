@@ -1,0 +1,130 @@
+﻿@model SaigonRide.Models.User
+
+@{
+    ViewData["Title"] = "Register";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-header bg-success text-white text-center py-3">
+                    <h4 class="mb-0">
+                        <i class="bi bi-person-vcard-fill me-2"></i>SaigonRide — Register
+                    </h4>
+                </div>
+                <div class="card-body p-4">
+                    @if (ViewBag.Error != null)
+                    {
+                        <div class="alert alert-danger d-flex align-items-center gap-2">
+                            <i class="bi bi-x-circle-fill"></i>
+                            @ViewBag.Error
+                        </div>
+                    }
+
+                    <form method="post" id="registerForm">
+                        @Html.AntiForgeryToken()
+
+                        <div class="mb-3">
+                            <label class="form-label">
+                                <i class="bi bi-person-fill me-1"></i>Full Name <span class="text-danger">*</span>
+                            </label>
+                            <input type="text" name="FullName"
+                                   class="form-control" required
+                                   value="@Model?.FullName" />
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">
+                                <i class="bi bi-envelope-fill me-1"></i>Email <span class="text-danger">*</span>
+                            </label>
+                            <input type="email" name="Email"
+                                   class="form-control" required
+                                   value="@Model?.Email" />
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">
+                                <i class="bi bi-lock-fill me-1"></i>Password <span class="text-danger">*</span>
+                            </label>
+                            <input type="password" name="Password"
+                                   class="form-control" required />
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">
+                                <i class="bi bi-telephone-fill me-1"></i>Phone <span class="text-danger">*</span>
+                            </label>
+                            <input type="text" name="Phone"
+                                   class="form-control" required
+                                   value="@Model?.Phone" />
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">
+                                <i class="bi bi-people-fill me-1"></i>User Type <span class="text-danger">*</span>
+                            </label>
+                            <select name="UserType" class="form-select" id="userTypeSelect">
+                                <option value="Local">Local User</option>
+                                <option value="Tourist">Foreign Tourist</option>
+                            </select>
+                        </div>
+
+                        <!-- Tourist fields -->
+                        <div id="touristFields" style="display:none;">
+                            <div class="alert alert-info d-flex align-items-center gap-2 py-2">
+                                <i class="bi bi-info-circle-fill"></i>
+                                <small>Tourist cần cung cấp thêm thông tin hộ chiếu.</small>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">
+                                    <i class="bi bi-pass-fill me-1"></i>Passport Number <span class="text-danger">*</span>
+                                </label>
+                                <input type="text" name="PassportNumber"
+                                       id="passportInput"
+                                       class="form-control"
+                                       value="@Model?.PassportNumber" />
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">
+                                    <i class="bi bi-globe2 me-1"></i>Nationality <span class="text-danger">*</span>
+                                </label>
+                                <input type="text" name="Nationality"
+                                       id="nationalityInput"
+                                       class="form-control"
+                                       value="@Model?.Nationality" />
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-success w-100 mt-2">
+                            <i class="bi bi-person-plus-fill me-2"></i>Register
+                        </button>
+                    </form>
+
+                    <hr />
+                    <p class="text-center mb-0">
+                        Already have an account?
+                        <a asp-controller="Auth" asp-action="Login">Login here</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const userTypeSelect = document.getElementById('userTypeSelect');
+    const touristFields = document.getElementById('touristFields');
+    const passportInput = document.getElementById('passportInput');
+    const nationalityInput = document.getElementById('nationalityInput');
+
+    function toggleTouristFields() {
+        const isTourist = userTypeSelect.value === 'Tourist';
+        touristFields.style.display = isTourist ? 'block' : 'none';
+        passportInput.required = isTourist;
+        nationalityInput.required = isTourist;
+    }
+
+    toggleTouristFields();
+    userTypeSelect.addEventListener('change', toggleTouristFields);
+</script>

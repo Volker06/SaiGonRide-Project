@@ -1,0 +1,68 @@
+@model IEnumerable<SaigonRide.Models.Rental>
+
+@{
+    ViewData["Title"] = "Danh sách Rental";
+}
+
+<h1>Danh sách Rental</h1>
+
+@if (TempData["Success"] != null)
+{
+    <div style="background:#d4edda; padding:10px; margin-bottom:10px;
+        border-radius:5px; color:#155724;">
+        ✅ @TempData["Success"]
+    </div>
+}
+
+@if (TempData["Error"] != null)
+{
+    <div style="background:#f8d7da; padding:10px; margin-bottom:10px;
+        border-radius:5px; color:#721c24;">
+        ❌ @TempData["Error"]
+    </div>
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Rental ID</th>
+            <th>Loại xe</th>
+            <th>Giờ bắt đầu</th>
+            <th>Giờ kết thúc</th>
+            <th>Tổng tiền</th>
+            <th>Giảm giá</th>
+            <th>Trạng thái</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.RentalID</td>
+                <td>@(item.Vehicle?.Type ?? "N/A")</td>
+                <td>@item.StartTime.ToString("HH:mm dd/MM/yyyy")</td>
+                <td>@(item.EndTime?.ToString("HH:mm dd/MM/yyyy") ?? "Đang thuê")</td>
+                <td>@(item.TotalFare.HasValue ? $"{item.TotalFare:N0} VND" : "-")</td>
+                <td>@(item.Discount > 0 ? $"{item.Discount:N0} VND" : "-")</td>
+                <td>
+                    @if (item.Status == "Active")
+                    {
+                        <span style="color:orange; font-weight:bold">🟡 Đang thuê</span>
+                    }
+                    else
+                    {
+                        <span style="color:green">✅ Hoàn thành</span>
+                    }
+                </td>
+                <td>
+                    @if (item.Status == "Active")
+                    {
+                        <a asp-action="ReturnVehicle" asp-route-rentalId="@item.RentalID"
+                           style="color:red; font-weight:bold">🔴 Trả xe</a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

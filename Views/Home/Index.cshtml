@@ -1,0 +1,236 @@
+﻿@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<div class="container-fluid px-4 py-3">
+
+    <!-- Header -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h2 class="fw-bold text-dark mb-0">
+                Hello, @Context.Session.GetString("FullName")! 👋
+            </h2>
+            <small class="text-muted">
+                Welcome to SaigonRide Vehicle Rental Service
+            </small>
+        </div>
+        <span class="text-muted">
+            @DateTime.Now.ToString("dd/MM/yyyy HH:mm")
+        </span>
+    </div>
+
+    <hr class="mb-4" />
+
+    <!-- Stats Cards -->
+    <div class="row g-3 mb-4">
+        <div class="col-md-4">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body">
+                    <div class="d-flex align-items-center mb-2">
+                        <i class="bi bi-bicycle me-2"
+                           style="font-size:1.5rem; color:#1A3C8F;"></i>
+                        <p class="text-muted small mb-0">TOTAL TRIPS</p>
+                    </div>
+                    <h3 class="fw-bold mb-0">@(ViewBag.TotalTrips ?? 0)</h3>
+                    <small class="text-muted">All time rentals</small>
+                </div>
+                <div style="height:4px; background:#1A3C8F;
+                border-radius:0 0 4px 4px;"></div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body">
+                    <div class="d-flex align-items-center mb-2">
+                        <i class="bi bi-clock me-2"
+                           style="font-size:1.5rem; color:#F5A623;"></i>
+                        <p class="text-muted small mb-0">ACTIVE RENTAL</p>
+                    </div>
+
+                    @{
+                        var activeList = ViewBag.ActiveRentals as List<SaigonRide.Models.Rental>;
+                    }
+
+                    @if (activeList != null && activeList.Count > 0)
+                    {
+                        <h3 class="fw-bold mb-0 text-warning">
+                            @activeList.Count Active
+                        </h3>
+                        <small class="text-muted">
+                            Renting now
+                        </small>
+                    }
+                    else
+                    {
+                        <h3 class="fw-bold mb-0 text-muted">None</h3>
+                        <small class="text-muted">No active rental</small>
+                    }
+                </div>
+                <div style="height:4px; background:#F5A623;
+                border-radius:0 0 4px 4px;"></div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body">
+                    <div class="d-flex align-items-center mb-2">
+                        <i class="bi bi-cash-coin me-2"
+                           style="font-size:1.5rem; color:#27AE60;"></i>
+                        <p class="text-muted small mb-0">TOTAL SPENT</p>
+                    </div>
+                    <h3 class="fw-bold mb-0">
+                        @(((double?)ViewBag.TotalSpent ?? 0).ToString("N0"))
+                        <small class="fs-6 text-muted">VND</small>
+                    </h3>
+                    <small class="text-muted">All time spending</small>
+                </div>
+                <div style="height:4px; background:#27AE60;
+                border-radius:0 0 4px 4px;"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="row g-3 mb-4">
+        <div class="col-md-6">
+            <a asp-controller="Station" asp-action="SelectStation"
+                   class="btn btn-primary w-100 py-2 fw-bold">
+                <i class="bi bi-bicycle me-2"></i>Rent a Vehicle
+            </a>
+        </div>
+        <div class="col-md-6">
+            <a asp-controller="Rental" asp-action="MyRentals"
+                   class="btn btn-outline-primary w-100 py-2 fw-bold">
+                <i class="bi bi-clock-history me-2"></i>View Rental History
+            </a>
+        </div>
+    </div>
+
+    <!-- Active Rentals -->
+    @{
+        var rentals = ViewBag.ActiveRentals as List<SaigonRide.Models.Rental>;
+    }
+
+    @if (rentals != null && rentals.Count > 0)
+    {
+        <div class="card border-0 shadow-sm mb-4"
+             style="border-left: 4px solid #F5A623 !important;">
+            <div class="card-header bg-white border-bottom">
+                <h6 class="fw-bold mb-0 text-warning">
+                    <i class="bi bi-clock me-2"></i>Active Rentals
+                </h6>
+            </div>
+
+            <div class="card-body">
+                @foreach (var r in rentals)
+                {
+                    <table class="table mb-3">
+                        <tr>
+                            <td class="text-muted">Vehicle ID</td>
+                            <td class="fw-bold">#@r.VehicleID</td>
+                        </tr>
+                        <tr>
+                            <td class="text-muted">Vehicle</td>
+                            <td class="fw-bold">
+                                @(r.Vehicle?.Type ?? "N/A")
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-muted">Start Time</td>
+                            <td>
+                                @r.StartTime.ToString("HH:mm dd/MM/yyyy")
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-muted">Start Station</td>
+                            <td>
+                                @(r.Vehicle?.Station?.StationName ?? "N/A")
+                            </td>
+                        </tr>
+                    </table>
+
+                    <a asp-controller="Rental"
+                           asp-action="Return"
+                           asp-route-rentalId="@r.RentalID"
+                           class="btn btn-danger w-100 mb-3">
+                        <i class="bi bi-arrow-return-left me-2"></i>Return Vehicle
+                    </a>
+                }
+            </div>
+        </div>
+    }
+
+    <!-- Service Introduction -->
+    <hr class="my-4" />
+
+    <h5 class="fw-bold text-dark mb-3">Our Services</h5>
+    <div class="row g-3 mb-4">
+        <div class="col-md-4">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body text-center p-4">
+                    <i class="bi bi-bicycle"
+                       style="font-size:2rem; color:#1A3C8F;"></i>
+                    <h6 class="fw-bold mt-3">Standard Bike</h6>
+                    <p class="text-muted small">
+                        Eco-friendly and affordable cycling
+                        across Ho Chi Minh City.
+                    </p>
+                    <span class="badge bg-primary">500 VND / min</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body text-center p-4">
+                    <i class="bi bi-scooter"
+                       style="font-size:2rem; color:#F5A623;"></i>
+                    <h6 class="fw-bold mt-3">E-Scooter</h6>
+                    <p class="text-muted small">
+                        Fast and convenient electric scooters
+                        for longer distances.
+                    </p>
+                    <span class="badge bg-warning text-dark">1,500 VND / min</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body text-center p-4">
+                    <i class="bi bi-geo-alt-fill"
+                       style="font-size:2rem; color:#27AE60;"></i>
+                    <h6 class="fw-bold mt-3">Multi-Station</h6>
+                    <p class="text-muted small">
+                        Pick up at any station and return
+                        at a different one. Flexible and easy!
+                    </p>
+                    <span class="badge bg-success">6 Stations</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Discount Banner -->
+    <div class="card border-0 shadow-sm mb-4"
+         style="background: linear-gradient(135deg, #1A3C8F, #3498DB);">
+        <div class="card-body text-white p-4">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <h6 class="fw-bold mb-1">
+                        <i class="bi bi-tag me-2"></i>Loyalty Discount
+                    </h6>
+                    <p class="mb-0 opacity-75 small">
+                        Return your vehicle to a low-inventory station
+                        and get <strong>15% off</strong> your fare automatically!
+                    </p>
+                </div>
+                <div class="col-md-4 text-end">
+                    <span style="font-size:2.5rem; font-weight:900;">15%</span>
+                    <p class="mb-0 opacity-75 small">discount applied</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
