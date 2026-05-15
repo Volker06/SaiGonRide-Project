@@ -147,7 +147,6 @@ C:\Users\USER\Downloads\SaigonRide (2)\SaigonRide\SaigonRide\SaigonRide\obj\Debu
 C:\Users\USER\Downloads\SaigonRide (2)\SaigonRide\SaigonRide\SaigonRide\obj\Debug\net10.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
 C:\Users\USER\Downloads\SaigonRide (2)\SaigonRide\SaigonRide\SaigonRide\obj\Debug\net10.0\scopedcss\bundle\SaigonRide.styles.css
 C:\Users\USER\Downloads\SaigonRide (2)\SaigonRide\SaigonRide\SaigonRide\obj\Debug\net10.0\scopedcss\projectbundle\SaigonRide.bundle.scp.css
-C:\Users\USER\Downloads\SaigonRide (2)\SaigonRide\SaigonRide\SaigonRide\obj\Debug\net10.0\compressed\pvwddsk6h6-{0}-ij47mhy17d-ij47mhy17d.gz
 C:\Users\USER\Downloads\SaigonRide (2)\SaigonRide\SaigonRide\SaigonRide\obj\Debug\net10.0\compressed\err67n2hvl-{0}-61n19gt1b8-61n19gt1b8.gz
 C:\Users\USER\Downloads\SaigonRide (2)\SaigonRide\SaigonRide\SaigonRide\obj\Debug\net10.0\compressed\omzf5xhr2z-{0}-xtxxf3hu2r-xtxxf3hu2r.gz
 C:\Users\USER\Downloads\SaigonRide (2)\SaigonRide\SaigonRide\SaigonRide\obj\Debug\net10.0\compressed\plrgycj4lx-{0}-bqjiyaj88i-bqjiyaj88i.gz
@@ -216,10 +215,13 @@ C:\Users\USER\Downloads\SaigonRide (2)\SaigonRide\SaigonRide\SaigonRide\obj\Debu
 C:\Users\USER\Downloads\SaigonRide (2)\SaigonRide\SaigonRide\SaigonRide\obj\Debug\net10.0\staticwebassets.development.json
 C:\Users\USER\Downloads\SaigonRide (2)\SaigonRide\SaigonRide\SaigonRide\obj\Debug\net10.0\staticwebassets.build.endpoints.json
 C:\Users\USER\Downloads\SaigonRide (2)\SaigonRide\SaigonRide\SaigonRide\obj\Debug\net10.0\swae.build.ex.cache
-C:\Users\USER\Downloads\SaigonRide (2)\SaigonRide\SaigonRide\SaigonRide\obj\Debug\net10.0\staticwebassets.upToDateCheck.txt
 C:\Users\USER\Downloads\SaigonRide (2)\SaigonRide\SaigonRide\SaigonRide\obj\Debug\net10.0\SaigonRide.csproj.Up2Date
 C:\Users\USER\Downloads\SaigonRide (2)\SaigonRide\SaigonRide\SaigonRide\obj\Debug\net10.0\SaigonRide.dll
 C:\Users\USER\Downloads\SaigonRide (2)\SaigonRide\SaigonRide\SaigonRide\obj\Debug\net10.0\refint\SaigonRide.dll
 C:\Users\USER\Downloads\SaigonRide (2)\SaigonRide\SaigonRide\SaigonRide\obj\Debug\net10.0\SaigonRide.pdb
 C:\Users\USER\Downloads\SaigonRide (2)\SaigonRide\SaigonRide\SaigonRide\obj\Debug\net10.0\SaigonRide.genruntimeconfig.cache
 C:\Users\USER\Downloads\SaigonRide (2)\SaigonRide\SaigonRide\SaigonRide\obj\Debug\net10.0\ref\SaigonRide.dll
+C:\Users\USER\Downloads\SaigonRide (2)\SaigonRide\SaigonRide\SaigonRide\obj\Debug\net10.0\SaigonRide.sourcelink.json
+C:\Users\USER\Downloads\SaigonRide (2)\SaigonRide\SaigonRide\SaigonRide\obj\Debug\net10.0\staticwebassets.upToDateCheck.txt
+C:\Users\USER\Downloads\SaigonRide (2)\SaigonRide\SaigonRide\SaigonRide\obj\Debug\net10.0\compressed\pvwddsk6h6-{0}-xvxfj8ky0m-xvxfj8ky0m.gz
+C:\Users\USER\Downloads\SaigonRide (2)\SaigonRide\SaigonRide\SaigonRide\obj\Debug\net10.0\compressed\esrco8j8nc-{0}-0alqhghkh6-0alqhghkh6.gz

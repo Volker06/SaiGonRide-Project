@@ -7,7 +7,7 @@
 <div class="container py-4" style="max-width: 500px;">
     <h2 class="fw-bold mb-4">
         <i class="bi bi-pencil-square text-warning me-2"></i>
-        Chỉnh sửa xe
+        <span data-i18n="vehicle.edit.title">Chỉnh sửa xe</span>
     </h2>
 
     <div class="card shadow border-0 rounded-4">
@@ -18,7 +18,7 @@
                 <div class="mb-3">
                     <label class="form-label">
                         <i class="bi bi-bicycle text-primary me-1"></i>
-                        <strong>Loại xe</strong>
+                        <strong data-i18n="vehicle.edit.type">Loại xe</strong>
                     </label>
                     <select name="Type" class="form-select" onchange="autoFillPrice(this.value)">
                         <option value="Standard Bike" selected="@(Model.Type == "Standard Bike")">
@@ -33,7 +33,7 @@
                 <div class="mb-3">
                     <label class="form-label">
                         <i class="bi bi-circle-fill text-secondary me-1"></i>
-                        <strong>Trạng thái</strong>
+                        <strong data-i18n="vehicle.edit.status">Trạng thái</strong>
                     </label>
                     <select name="Status" class="form-select">
                         <option value="Available" selected="@(Model.Status == "Available")">
@@ -51,7 +51,7 @@
                 <div class="mb-3">
                     <label class="form-label">
                         <i class="bi bi-currency-dollar text-warning me-1"></i>
-                        <strong>Giá thuê (VND/phút)</strong>
+                        <strong data-i18n="vehicle.edit.price">Giá thuê (VND/phút)</strong>
                     </label>
                     <div class="input-group">
                         <span class="input-group-text">
@@ -66,25 +66,25 @@
                 <div class="mb-4">
                     <label class="form-label">
                         <i class="bi bi-geo-alt-fill text-danger me-1"></i>
-                        <strong>Trạm</strong>
+                        <strong data-i18n="vehicle.edit.station">Trạm</strong>
                     </label>
                     <div class="input-group">
                         <span class="input-group-text">
                             <i class="bi bi-pin-map-fill"></i>
                         </span>
                         <select name="StationID" class="form-select" asp-items="ViewBag.StationID">
-                            <option value="">-- Chọn trạm --</option>
+                            <option value="" data-i18n="vehicle.edit.choose">-- Chọn trạm --</option>
                         </select>
                     </div>
                 </div>
 
                 <button type="submit" class="btn btn-warning w-100 py-3 mb-2">
                     <i class="bi bi-floppy-fill me-2"></i>
-                    Lưu thay đổi
+                    <span data-i18n="vehicle.edit.save">Lưu thay đổi</span>
                 </button>
                 <a asp-action="Index" class="btn btn-secondary w-100 py-3">
                     <i class="bi bi-arrow-left-circle me-2"></i>
-                    Quay lại
+                    <span data-i18n="vehicle.edit.back">Quay lại</span>
                 </a>
             </form>
         </div>

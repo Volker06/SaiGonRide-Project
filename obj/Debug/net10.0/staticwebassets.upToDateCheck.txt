@@ -1,5 +1,6 @@
 wwwroot\css\site.css
 wwwroot\favicon.ico
+wwwroot\js\i18n.js
 wwwroot\js\site.js
 wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css
 wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css.map
@@ -123,3 +124,4 @@ C:\Users\USER\Downloads\SaigonRide (2)\SaigonRide\SaigonRide\SaigonRide\wwwroot\
 C:\Users\USER\Downloads\SaigonRide (2)\SaigonRide\SaigonRide\SaigonRide\wwwroot\lib\jquery\dist\jquery.slim.min.js
 C:\Users\USER\Downloads\SaigonRide (2)\SaigonRide\SaigonRide\SaigonRide\wwwroot\lib\jquery\dist\jquery.slim.min.map
 C:\Users\USER\Downloads\SaigonRide (2)\SaigonRide\SaigonRide\SaigonRide\wwwroot\lib\jquery\LICENSE.txt
+C:\Users\USER\Downloads\SaigonRide (2)\SaigonRide\SaigonRide\SaigonRide\wwwroot\js\i18n.js

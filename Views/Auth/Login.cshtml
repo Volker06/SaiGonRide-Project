@@ -1,4 +1,4 @@
-﻿@{
+@{
     ViewData["Title"] = "Login";
 }
 
@@ -8,7 +8,7 @@
             <div class="card shadow">
                 <div class="card-header bg-primary text-white text-center">
                     <h4>
-                        <i class="bi bi-box-arrow-in-right me-2"></i>SaigonRide — Login
+                        <i class="bi bi-box-arrow-in-right me-2"></i>SaigonRide — <span data-i18n="login.title">Login</span>
                     </h4>
                 </div>
                 <div class="card-body">
@@ -31,27 +31,27 @@
                         @Html.AntiForgeryToken()
                         <div class="mb-3">
                             <label class="form-label">
-                                <i class="bi bi-envelope-fill me-1"></i>Email
+                                <i class="bi bi-envelope-fill me-1"></i><span data-i18n="login.email">Email</span>
                             </label>
                             <input type="email" name="email"
                                    class="form-control" required />
                         </div>
                         <div class="mb-3">
                             <label class="form-label">
-                                <i class="bi bi-lock-fill me-1"></i>Password
+                                <i class="bi bi-lock-fill me-1"></i><span data-i18n="login.password">Password</span>
                             </label>
                             <input type="password" name="password"
                                    class="form-control" required />
                         </div>
                         <button type="submit" class="btn btn-primary w-100">
-                            <i class="bi bi-box-arrow-in-right me-2"></i>Login
+                            <i class="bi bi-box-arrow-in-right me-2"></i><span data-i18n="login.btn">Login</span>
                         </button>
                     </form>
 
                     <hr />
                     <p class="text-center">
-                        Don't have an account?
-                        <a asp-controller="Auth" asp-action="Register">Register here</a>
+                        <span data-i18n="login.noaccount">Don't have an account?</span>
+                        <a asp-controller="Auth" asp-action="Register" data-i18n="login.register">Register here</a>
                     </p>
                 </div>
             </div>

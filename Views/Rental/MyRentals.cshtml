@@ -1,4 +1,4 @@
-﻿@model IEnumerable<SaigonRide.Models.Rental>
+@model IEnumerable<SaigonRide.Models.Rental>
 
 @{
     ViewData["Title"] = "My Rentals";
@@ -10,12 +10,12 @@
     <div class="d-flex justify-content-between align-items-center mb-4">
         <div>
             <h2 class="fw-bold text-dark mb-0">
-                <i class="bi bi-clock-history me-2"></i>My Rental History
+                <i class="bi bi-clock-history me-2"></i><span data-i18n="myrentals.title">My Rental History</span>
             </h2>
-            <small class="text-muted">All your rental transactions</small>
+            <small class="text-muted" data-i18n="myrentals.subtitle">All your rental transactions</small>
         </div>
         <a asp-controller="Station" asp-action="SelectStation" class="btn btn-primary">
-            <i class="bi bi-bicycle me-2"></i>Rent a Vehicle
+            <i class="bi bi-bicycle me-2"></i><span data-i18n="myrentals.rentbtn">Rent a Vehicle</span>
         </a>
     </div>
 
@@ -39,11 +39,11 @@
     {
         <div class="card border-0 shadow-sm text-center p-5">
             <i class="bi bi-inbox" style="font-size:3rem; color:#6C757D;"></i>
-            <h5 class="mt-3 text-muted">No rental history yet</h5>
-            <p class="text-muted small">Start your first ride today!</p>
+            <h5 class="mt-3 text-muted" data-i18n="myrentals.empty">No rental history yet</h5>
+            <p class="text-muted small" data-i18n="myrentals.startride">Start your first ride today!</p>
             <a asp-controller="Station" asp-action="SelectStation"
                class="btn btn-primary mx-auto" style="width:200px;">
-                <i class="bi bi-bicycle me-2"></i>Rent a Vehicle
+                <i class="bi bi-bicycle me-2"></i><span data-i18n="myrentals.rentbtn">Rent a Vehicle</span>
             </a>
         </div>
     }
@@ -55,13 +55,13 @@
                     <thead style="background:#f8f9fa;">
                         <tr>
                             <th class="px-4 py-3 text-muted small">#</th>
-                            <th class="py-3 text-muted small">VEHICLE</th>
-                            <th class="py-3 text-muted small">START TIME</th>
-                            <th class="py-3 text-muted small">END TIME</th>
-                            <th class="py-3 text-muted small">FARE</th>
-                            <th class="py-3 text-muted small">DISCOUNT</th>
-                            <th class="py-3 text-muted small">STATUS</th>
-                            <th class="py-3 text-muted small">ACTION</th>
+                            <th class="py-3 text-muted small" data-i18n="myrentals.col.vehicle">VEHICLE</th>
+                            <th class="py-3 text-muted small" data-i18n="myrentals.col.start">START TIME</th>
+                            <th class="py-3 text-muted small" data-i18n="myrentals.col.end">END TIME</th>
+                            <th class="py-3 text-muted small" data-i18n="myrentals.col.fare">FARE</th>
+                            <th class="py-3 text-muted small" data-i18n="myrentals.col.discount">DISCOUNT</th>
+                            <th class="py-3 text-muted small" data-i18n="myrentals.col.status">STATUS</th>
+                            <th class="py-3 text-muted small" data-i18n="myrentals.col.action">ACTION</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -94,7 +94,7 @@
                                     }
                                     else
                                     {
-                                        <span class="text-warning fw-bold">Active</span>
+                                        <span class="text-warning fw-bold" data-i18n="myrentals.active">Active</span>
                                     }
                                 </td>
                                 <td class="py-3 fw-bold text-success">
@@ -111,14 +111,14 @@
                                     @if (item.Status == "Active")
                                     {
                                         <span class="badge bg-warning text-dark">
-                                            <i class="bi bi-clock me-1"></i>Active
+                                            <i class="bi bi-clock me-1"></i><span data-i18n="myrentals.active">Active</span>
                                         </span>
                                     }
                                     else
                                     {
                                         <span class="badge bg-success">
                                             <i class="bi bi-check-circle me-1"></i>
-                                            Completed
+                                            <span data-i18n="myrentals.completed">Completed</span>
                                         </span>
                                     }
                                 </td>
@@ -130,7 +130,7 @@
                                                asp-route-rentalId="@item.RentalID"
                                                class="btn btn-sm btn-danger">
                                             <i class="bi bi-arrow-return-left me-1"></i>
-                                            Return
+                                            <span data-i18n="myrentals.return">Return</span>
                                         </a>
                                     }
                                     else

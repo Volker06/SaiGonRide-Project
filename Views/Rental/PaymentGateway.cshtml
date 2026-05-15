@@ -1,4 +1,4 @@
-﻿@{
+@{
     ViewData["Title"] = "Thanh toán";
     var method = ViewBag.Method as string;
     var amount = (double)ViewBag.Amount;
@@ -15,7 +15,9 @@
                 <i class="bi bi-phone-fill text-white" style="font-size:2rem;"></i>
             </div>
         </div>
-        <h3 class="fw-bold" style="color:#ae2070;">Thanh toán MoMo</h3>
+        <h3 class="fw-bold" style="color:#ae2070;">
+            <span data-i18n="payment.momo.title">Thanh toán MoMo</span>
+        </h3>
     }
     else
     {
@@ -25,12 +27,14 @@
                 <i class="bi bi-credit-card-fill text-white" style="font-size:2rem;"></i>
             </div>
         </div>
-        <h3 class="fw-bold" style="color:#0066cc;">Thanh toán VNPay</h3>
+        <h3 class="fw-bold" style="color:#0066cc;">
+            <span data-i18n="payment.vnpay.title">Thanh toán VNPay</span>
+        </h3>
     }
 
-    <p class="text-muted mb-4">Quét mã QR để thanh toán</p>
+    <p class="text-muted mb-4" data-i18n="payment.scan">Quét mã QR để thanh toán</p>
 
-    <!-- QR Code giả -->
+    <!-- QR Code -->
     <div class="card shadow border-0 rounded-4 mb-4 mx-auto" style="max-width:300px;">
         <div class="card-body p-4">
             <div class="bg-light rounded-3 p-4 mb-3"
@@ -47,14 +51,16 @@
 
     <div class="alert alert-info">
         <i class="bi bi-info-circle me-2"></i>
-        Mã QR sẽ hết hạn sau <strong id="countdown">60</strong> giây
+        <span data-i18n="payment.expire">Mã QR sẽ hết hạn sau</span>
+        <strong id="countdown">60</strong>
+        <span data-i18n="payment.expire2">giây</span>
     </div>
 
     <div class="d-flex gap-3">
         <a href="/Rental/PaymentSuccess?rentalId=@rentalId&method=@method&amount=@amount"
            class="btn btn-success btn-lg flex-fill">
             <i class="bi bi-check-circle me-2"></i>
-            Thanh toán thành công
+            <span data-i18n="payment.success.btn">Thanh toán thành công</span>
         </a>
 
         <form method="post" action="/Rental/PaymentFailed" class="flex-fill">
@@ -64,7 +70,7 @@
             <input type="hidden" name="amount" value="@amount" />
             <button type="submit" class="btn btn-danger btn-lg w-100">
                 <i class="bi bi-x-circle me-2"></i>
-                Thất bại
+                <span data-i18n="payment.fail.btn">Thất bại</span>
             </button>
         </form>
     </div>

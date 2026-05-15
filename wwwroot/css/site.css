@@ -23,7 +23,6 @@ html {
     text-align: start;
 }
 
-/* Footer cố định ở dưới */
 footer {
     position: fixed !important;
     bottom: 0;
@@ -34,7 +33,6 @@ footer {
     border-top: 1px solid #dee2e6;
 }
 
-/* Đẩy nội dung lên để không bị footer che */
 body {
     padding-bottom: 100px;
 }

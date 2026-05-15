@@ -1,4 +1,4 @@
-﻿@{
+@{
     ViewData["Title"] = "Revenue Report";
 }
 
@@ -7,8 +7,8 @@
     <!-- Header -->
     <div class="d-flex justify-content-between align-items-center mb-4">
         <div>
-            <h2 class="fw-bold text-dark mb-0">Revenue Report</h2>
-            <small class="text-muted">SaigonRide Management Dashboard</small>
+            <h2 class="fw-bold text-dark mb-0" data-i18n="report.title">Revenue Report</h2>
+            <small class="text-muted" data-i18n="report.subtitle">SaigonRide Management Dashboard</small>
         </div>
         <span class="text-muted">@DateTime.Now.ToString("dd/MM/yyyy HH:mm")</span>
     </div>
@@ -20,48 +20,44 @@
         <div class="col-md-3">
             <div class="card border-0 shadow-sm">
                 <div class="card-body">
-                    <p class="text-muted small mb-1">TOTAL USERS</p>
+                    <p class="text-muted small mb-1" data-i18n="report.totalusers">TOTAL USERS</p>
                     <h3 class="fw-bold mb-0">@ViewBag.TotalUsers</h3>
-                    <small class="text-muted">Registered accounts</small>
+                    <small class="text-muted" data-i18n="report.registered">Registered accounts</small>
                 </div>
-                <div style="height:4px; background:#1A3C8F;
-                border-radius:0 0 4px 4px;"></div>
+                <div style="height:4px; background:#1A3C8F; border-radius:0 0 4px 4px;"></div>
             </div>
         </div>
         <div class="col-md-3">
             <div class="card border-0 shadow-sm">
                 <div class="card-body">
-                    <p class="text-muted small mb-1">TOTAL VEHICLES</p>
+                    <p class="text-muted small mb-1" data-i18n="report.totalvehicles">TOTAL VEHICLES</p>
                     <h3 class="fw-bold mb-0">@ViewBag.TotalVehicles</h3>
-                    <small class="text-muted">In fleet</small>
+                    <small class="text-muted" data-i18n="report.infleet">In fleet</small>
                 </div>
-                <div style="height:4px; background:#27AE60;
-                border-radius:0 0 4px 4px;"></div>
+                <div style="height:4px; background:#27AE60; border-radius:0 0 4px 4px;"></div>
             </div>
         </div>
         <div class="col-md-3">
             <div class="card border-0 shadow-sm">
                 <div class="card-body">
-                    <p class="text-muted small mb-1">TOTAL RENTALS</p>
+                    <p class="text-muted small mb-1" data-i18n="report.totalrentals">TOTAL RENTALS</p>
                     <h3 class="fw-bold mb-0">@ViewBag.TotalRentals</h3>
-                    <small class="text-muted">All time</small>
+                    <small class="text-muted" data-i18n="report.alltime">All time</small>
                 </div>
-                <div style="height:4px; background:#F5A623;
-                border-radius:0 0 4px 4px;"></div>
+                <div style="height:4px; background:#F5A623; border-radius:0 0 4px 4px;"></div>
             </div>
         </div>
         <div class="col-md-3">
             <div class="card border-0 shadow-sm">
                 <div class="card-body">
-                    <p class="text-muted small mb-1">TOTAL REVENUE</p>
+                    <p class="text-muted small mb-1" data-i18n="report.totalrevenue">TOTAL REVENUE</p>
                     <h3 class="fw-bold mb-0">
                         @ViewBag.TotalRevenue.ToString("N0")
                         <small class="fs-6 text-muted">VND</small>
                     </h3>
-                    <small class="text-muted">All stations</small>
+                    <small class="text-muted" data-i18n="report.allstations">All stations</small>
                 </div>
-                <div style="height:4px; background:#E74C3C;
-                border-radius:0 0 4px 4px;"></div>
+                <div style="height:4px; background:#E74C3C; border-radius:0 0 4px 4px;"></div>
             </div>
         </div>
     </div>
@@ -69,17 +65,17 @@
     <!-- Station Table -->
     <div class="card border-0 shadow-sm">
         <div class="card-header bg-white border-bottom py-3">
-            <h5 class="fw-bold mb-0">Revenue by Station</h5>
+            <h5 class="fw-bold mb-0" data-i18n="report.bystation">Revenue by Station</h5>
         </div>
         <div class="card-body p-0">
             <table class="table table-hover mb-0">
                 <thead style="background:#f8f9fa;">
                     <tr>
-                        <th class="px-4 py-3 text-muted small">STATION</th>
-                        <th class="py-3 text-muted small">LOCATION</th>
-                        <th class="py-3 text-muted small">CAPACITY</th>
-                        <th class="py-3 text-muted small">INVENTORY</th>
-                        <th class="py-3 text-muted small">ACTION</th>
+                        <th class="px-4 py-3 text-muted small" data-i18n="report.col.station">STATION</th>
+                        <th class="py-3 text-muted small" data-i18n="report.col.location">LOCATION</th>
+                        <th class="py-3 text-muted small" data-i18n="report.col.capacity">CAPACITY</th>
+                        <th class="py-3 text-muted small" data-i18n="report.col.inventory">INVENTORY</th>
+                        <th class="py-3 text-muted small" data-i18n="report.col.action">ACTION</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -114,7 +110,7 @@
                                        asp-action="StationDetail"
                                        asp-route-stationId="@station.StationID"
                                        class="btn btn-sm btn-outline-primary">
-                                    View Detail →
+                                    <span data-i18n="report.viewdetail">View Detail →</span>
                                 </a>
                             </td>
                         </tr>

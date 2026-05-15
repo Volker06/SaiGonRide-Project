@@ -4,7 +4,7 @@
     ViewData["Title"] = "Add New Vehicle";
 }
 
-<h2 class="mb-4">➕ Add New Vehicle</h2>
+<h2 class="mb-4">➕ <span data-i18n="vehicle.create.title">Add New Vehicle</span></h2>
 
 @if (TempData["Success"] != null)
 {
@@ -16,17 +16,21 @@
         <form asp-action="Create">
 
             <div class="mb-3">
-                <label class="form-label"><strong>Loại xe</strong></label>
+                <label class="form-label">
+                    <strong data-i18n="vehicle.create.type">Loại xe</strong>
+                </label>
                 <select name="Type" class="form-select" required
                         onchange="autoFillPrice(this.value)">
-                    <option value="">-- Chọn loại xe --</option>
+                    <option value="" data-i18n="vehicle.create.choose">-- Chọn loại xe --</option>
                     <option value="Standard Bike">🚲 Standard Bike</option>
                     <option value="E-Scooter">🛵 E-Scooter</option>
                 </select>
             </div>
 
             <div class="mb-3">
-                <label class="form-label"><strong>Giá thuê (VND/phút)</strong></label>
+                <label class="form-label">
+                    <strong data-i18n="vehicle.create.price">Giá thuê (VND/phút)</strong>
+                </label>
                 <input type="number" name="PricePerMinute" id="priceInput"
                        class="form-control" readonly
                        style="background:#f8f9fa;" />
@@ -34,16 +38,20 @@
             </div>
 
             <div class="mb-3">
-                <label class="form-label"><strong>Trạm</strong></label>
+                <label class="form-label">
+                    <strong data-i18n="vehicle.create.station">Trạm</strong>
+                </label>
                 <select name="StationID" class="form-select" asp-items="ViewBag.StationID">
-                    <option value="">-- Chọn trạm --</option>
+                    <option value="" data-i18n="vehicle.create.choose2">-- Chọn trạm --</option>
                 </select>
             </div>
 
             <button type="submit" class="btn btn-success w-100">
-                ➕ Add Vehicle
+                ➕ <span data-i18n="vehicle.create.btn">Add Vehicle</span>
             </button>
-            <a asp-action="Index" class="btn btn-secondary w-100 mt-2">⬅ Back</a>
+            <a asp-action="Index" class="btn btn-secondary w-100 mt-2">
+                ⬅ <span data-i18n="vehicle.create.back">Back</span>
+            </a>
         </form>
     </div>
 </div>

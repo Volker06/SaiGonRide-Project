@@ -1,4 +1,4 @@
-﻿@model IEnumerable<SaigonRide.Models.Station>
+@model IEnumerable<SaigonRide.Models.Station>
 
 @{
     ViewData["Title"] = "Chọn Trạm";
@@ -7,9 +7,9 @@
 <div class="py-4">
     <h2 class="fw-bold mb-1">
         <i class="bi bi-geo-alt-fill text-primary me-2"></i>
-        Chọn Trạm
+        <span data-i18n="select.title">Chọn Trạm</span>
     </h2>
-    <p class="text-muted mb-4">Chọn trạm gần bạn nhất để thuê xe</p>
+    <p class="text-muted mb-4" data-i18n="select.subtitle">Chọn trạm gần bạn nhất để thuê xe</p>
 
     <div class="row">
         @foreach (var station in Model)
@@ -38,11 +38,12 @@
 
                         <div class="d-flex justify-content-between mb-2">
                             <span class="text-muted">
-                                <i class="bi bi-bicycle me-1"></i> Xe có sẵn
+                                <i class="bi bi-bicycle me-1"></i>
+                                <span data-i18n="select.available">Xe có sẵn</span>
                             </span>
                             @if (availableCount == 0)
                             {
-                                <span class="badge bg-danger">Hết xe</span>
+                                <span class="badge bg-danger" data-i18n="select.none">Hết xe</span>
                             }
                             else if (availableCount <= 2)
                             {
@@ -60,7 +61,8 @@
 
                         <div class="d-flex justify-content-between mb-4">
                             <span class="text-muted">
-                                <i class="bi bi-building me-1"></i> Sức chứa
+                                <i class="bi bi-building me-1"></i>
+                                <span data-i18n="select.capacity">Sức chứa</span>
                             </span>
                             <span class="fw-bold">@station.Capacity xe</span>
                         </div>
@@ -70,14 +72,14 @@
                             <a href="/Station/VehiclesAtStation/@station.StationID"
                                class="btn btn-primary w-100">
                                 <i class="bi bi-arrow-right-circle me-2"></i>
-                                Chọn trạm này
+                                <span data-i18n="select.btn">Chọn trạm này</span>
                             </a>
                         }
                         else
                         {
                             <button class="btn btn-secondary w-100" disabled>
                                 <i class="bi bi-x-circle me-2"></i>
-                                Hết xe
+                                <span data-i18n="select.disabled">Hết xe</span>
                             </button>
                         }
                     </div>

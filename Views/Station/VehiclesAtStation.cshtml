@@ -1,4 +1,4 @@
-﻿@model SaigonRide.Models.Station
+@model SaigonRide.Models.Station
 
 @{
     ViewData["Title"] = "Xe tại trạm " + Model.StationName;
@@ -10,7 +10,8 @@
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
                 <a href="/Station/SelectStation">
-                    <i class="bi bi-geo-alt me-1"></i>Chọn trạm
+                    <i class="bi bi-geo-alt me-1"></i>
+                    <span data-i18n="vehicles.breadcrumb">Chọn trạm</span>
                 </a>
             </li>
             <li class="breadcrumb-item active">@Model.StationName</li>
@@ -29,9 +30,10 @@
     {
         <div class="alert alert-warning text-center">
             <i class="bi bi-exclamation-triangle me-2"></i>
-            Không có xe nào khả dụng tại trạm này.
+            <span data-i18n="vehicles.noavail">Không có xe nào khả dụng tại trạm này.</span>
             <a href="/Station/SelectStation" class="btn btn-outline-primary ms-3 btn-sm">
-                <i class="bi bi-arrow-left me-1"></i> Chọn trạm khác
+                <i class="bi bi-arrow-left me-1"></i>
+                <span data-i18n="vehicles.other">Chọn trạm khác</span>
             </a>
         </div>
     }
@@ -60,18 +62,20 @@
                             <p class="text-muted mb-1">
                                 <i class="bi bi-cash me-1"></i>
                                 <strong>@vehicle.PricePerMinute.ToString("N0")</strong>
-                                VND/phút
+                                <span data-i18n="vehicles.per.min">VND/phút</span>
                             </p>
 
                             <span class="badge bg-success mb-3">
-                                <i class="bi bi-check-circle me-1"></i>Available
+                                <i class="bi bi-check-circle me-1"></i>
+                                <span data-i18n="vehicles.available">Available</span>
                             </span>
 
                             <a asp-controller="Rental"
                                asp-action="Confirm"
                                asp-route-vehicleId="@vehicle.VehicleID"
                                class="btn btn-success w-100">
-                                <i class="bi bi-bicycle me-2"></i>Thuê xe này
+                                <i class="bi bi-bicycle me-2"></i>
+                                <span data-i18n="vehicles.rent.btn">Thuê xe này</span>
                             </a>
                         </div>
                     </div>

@@ -7,7 +7,7 @@
 <div class="container mt-4">
     <div class="card shadow">
         <div class="card-header bg-primary text-white">
-            <h3 class="mb-0">Add New Station</h3>
+            <h3 class="mb-0" data-i18n="station.create.title">Add New Station</h3>
         </div>
 
         <div class="card-body">
@@ -16,7 +16,7 @@
                      class="alert alert-danger"></div>
 
                 <div class="mb-3">
-                    <label asp-for="StationName" class="form-label"></label>
+                    <label asp-for="StationName" class="form-label" data-i18n="station.create.name">Station Name</label>
                     <input asp-for="StationName"
                            class="form-control"
                            placeholder="Enter station name" />
@@ -25,7 +25,7 @@
                 </div>
 
                 <div class="mb-3">
-                    <label asp-for="Location" class="form-label"></label>
+                    <label asp-for="Location" class="form-label" data-i18n="station.create.location">Location</label>
                     <input asp-for="Location"
                            class="form-control"
                            placeholder="Enter station location" />
@@ -34,7 +34,7 @@
                 </div>
 
                 <div class="mb-3">
-                    <label asp-for="Capacity" class="form-label"></label>
+                    <label asp-for="Capacity" class="form-label" data-i18n="station.create.capacity">Capacity</label>
                     <input asp-for="Capacity"
                            class="form-control"
                            placeholder="Enter station capacity" />
@@ -43,21 +43,21 @@
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label">Current Inventory</label>
+                    <label class="form-label" data-i18n="station.create.inventory">Current Inventory</label>
                     <input class="form-control"
                            value="0"
                            readonly />
-                    <small class="text-muted">
+                    <small class="text-muted" data-i18n="station.create.hint">
                         Vehicles will be added automatically later.
                     </small>
                 </div>
 
                 <div class="mt-4">
-                    <button type="submit" class="btn btn-success">
+                    <button type="submit" class="btn btn-success" data-i18n="station.create.btn">
                         Create Station
                     </button>
 
-                    <a asp-action="Index" class="btn btn-secondary ms-2">
+                    <a asp-action="Index" class="btn btn-secondary ms-2" data-i18n="station.create.back">
                         Back to List
                     </a>
                 </div>

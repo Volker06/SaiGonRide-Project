@@ -4,7 +4,10 @@
     ViewData["Title"] = "Delete Station";
 }
 
-<h2 class="mb-4"><i class="bi bi-trash3-fill text-danger me-2"></i> Delete Station</h2>
+<h2 class="mb-4">
+    <i class="bi bi-trash3-fill text-danger me-2"></i>
+    <span data-i18n="station.delete.title">Delete Station</span>
+</h2>
 
 <div class="alert alert-danger d-flex align-items-start gap-2">
     <i class="bi bi-exclamation-triangle-fill fs-5 mt-1"></i>
@@ -25,15 +28,15 @@
     <div class="card-body p-4">
         <table class="table table-borderless">
             <tr>
-                <td><strong>Tên trạm:</strong></td>
+                <td><strong data-i18n="station.delete.name">Tên trạm:</strong></td>
                 <td>@Model.StationName</td>
             </tr>
             <tr>
-                <td><strong>Địa điểm:</strong></td>
+                <td><strong data-i18n="station.delete.location">Địa điểm:</strong></td>
                 <td>@Model.Location</td>
             </tr>
             <tr>
-                <td><strong>Số xe hiện có:</strong></td>
+                <td><strong data-i18n="station.delete.inventory">Số xe hiện có:</strong></td>
                 <td>@Model.CurrentInventory / @Model.Capacity</td>
             </tr>
         </table>
@@ -41,10 +44,12 @@
         <form asp-action="Delete">
             <input type="hidden" asp-for="StationID" />
             <button type="submit" class="btn btn-danger w-100">
-                <i class="bi bi-trash3 me-1"></i> Confirm Delete
+                <i class="bi bi-trash3 me-1"></i>
+                <span data-i18n="station.delete.confirm.btn">Confirm Delete</span>
             </button>
             <a asp-action="Index" class="btn btn-secondary w-100 mt-2">
-                <i class="bi bi-arrow-left me-1"></i> Cancel
+                <i class="bi bi-arrow-left me-1"></i>
+                <span data-i18n="station.delete.cancel">Cancel</span>
             </a>
         </form>
     </div>

@@ -23,12 +23,13 @@
 {
     <h2 class="fw-bold mb-3">
         <i class="bi bi-ev-front-fill me-2 text-primary"></i>
-        Vehicle Management
+        <span data-i18n="vehicle.mgmt">Vehicle Management</span>
     </h2>
 
     <div class="d-flex justify-content-between align-items-center mb-3">
         <a asp-action="Create" class="btn btn-primary">
-            <i class="bi bi-plus-circle-fill me-1"></i> Thêm xe mới
+            <i class="bi bi-plus-circle-fill me-1"></i>
+            <span data-i18n="vehicle.addnew">Thêm xe mới</span>
         </a>
         <div class="d-flex gap-2">
             <a asp-action="Index" asp-route-sort="station"
@@ -49,11 +50,11 @@ else
 {
     <h2 class="fw-bold mb-3">
         <i class="bi bi-bicycle me-2 text-primary"></i>
-        Xe có sẵn
+        <span data-i18n="vehicle.available.title">Xe có sẵn</span>
     </h2>
     <p class="text-muted mb-4">
         <i class="bi bi-hand-index-thumb me-1"></i>
-        Chọn xe bạn muốn thuê!
+        <span data-i18n="vehicle.choose">Chọn xe bạn muốn thuê!</span>
     </p>
 }
 
@@ -62,12 +63,12 @@ else
         <table class="table table-hover align-middle mb-0 rounded-4 overflow-hidden">
             <thead class="table-primary">
                 <tr>
-                    <th><i class="bi bi-hash me-1"></i> ID</th>
-                    <th><i class="bi bi-tag-fill me-1"></i> Loại xe</th>
-                    <th><i class="bi bi-info-circle-fill me-1"></i> Trạng thái</th>
-                    <th><i class="bi bi-cash-coin me-1"></i> Giá/phút</th>
-                    <th><i class="bi bi-geo-alt-fill me-1"></i> Trạm</th>
-                    <th class="text-center"><i class="bi bi-gear-fill me-1"></i> Thao tác</th>
+                    <th><i class="bi bi-hash me-1"></i> <span data-i18n="vehicle.col.id">ID</span></th>
+                    <th><i class="bi bi-tag-fill me-1"></i> <span data-i18n="vehicle.col.type">Loại xe</span></th>
+                    <th><i class="bi bi-info-circle-fill me-1"></i> <span data-i18n="vehicle.col.status">Trạng thái</span></th>
+                    <th><i class="bi bi-cash-coin me-1"></i> <span data-i18n="vehicle.col.price">Giá/phút</span></th>
+                    <th><i class="bi bi-geo-alt-fill me-1"></i> <span data-i18n="vehicle.col.station">Trạm</span></th>
+                    <th class="text-center"><i class="bi bi-gear-fill me-1"></i> <span data-i18n="vehicle.col.action">Thao tác</span></th>
                 </tr>
             </thead>
 
@@ -96,19 +97,22 @@ else
                             @if (item.Status == "Available")
                             {
                                 <span class="badge bg-success">
-                                    <i class="bi bi-check-circle-fill me-1"></i> Available
+                                    <i class="bi bi-check-circle-fill me-1"></i>
+                                    <span data-i18n="vehicle.status.available">Available</span>
                                 </span>
                             }
                             else if (item.Status == "Rented")
                             {
                                 <span class="badge bg-danger">
-                                    <i class="bi bi-x-circle-fill me-1"></i> Rented
+                                    <i class="bi bi-x-circle-fill me-1"></i>
+                                    <span data-i18n="vehicle.status.rented">Rented</span>
                                 </span>
                             }
                             else
                             {
                                 <span class="badge bg-secondary">
-                                    <i class="bi bi-wrench-adjustable me-1"></i> Maintenance
+                                    <i class="bi bi-wrench-adjustable me-1"></i>
+                                    <span data-i18n="vehicle.status.maintenance">Maintenance</span>
                                 </span>
                             }
                         </td>
@@ -116,7 +120,7 @@ else
                         <td>
                             <i class="bi bi-currency-exchange text-warning me-1"></i>
                             <span class="fw-semibold">@item.PricePerMinute.ToString("N0")</span>
-                            <small class="text-muted">VND/phút</small>
+                            <small class="text-muted" data-i18n="vehicle.col.price">VND/phút</small>
                         </td>
 
                         <td>
@@ -148,13 +152,15 @@ else
                                            asp-action="Confirm"
                                            asp-route-vehicleId="@item.VehicleID"
                                            class="btn btn-sm btn-success">
-                                        <i class="bi bi-bicycle me-1"></i> Thuê ngay
+                                        <i class="bi bi-bicycle me-1"></i>
+                                        <span data-i18n="vehicle.rent.btn">Thuê ngay</span>
                                     </a>
                                 }
                                 else
                                 {
                                     <span class="badge bg-secondary">
-                                        <i class="bi bi-slash-circle me-1"></i> Không có sẵn
+                                        <i class="bi bi-slash-circle me-1"></i>
+                                        <span data-i18n="vehicle.unavailable">Không có sẵn</span>
                                     </span>
                                 }
                             }

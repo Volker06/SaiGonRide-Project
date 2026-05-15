@@ -21,21 +21,22 @@
 
 <h2 class="fw-bold mb-3">
     <i class="bi bi-geo-alt-fill text-primary me-2"></i>
-    Station Management
+    <span data-i18n="station.mgmt">Station Management</span>
 </h2>
 
 <a asp-action="Create" class="btn btn-primary mb-3">
-    <i class="bi bi-plus-circle"></i> Add New Station
+    <i class="bi bi-plus-circle"></i>
+    <span data-i18n="station.addnew">Add New Station</span>
 </a>
 
 <table class="table table-hover shadow-sm">
     <thead class="table-light">
         <tr>
-            <th><i class="bi bi-geo"></i> Name</th>
-            <th><i class="bi bi-pin-map"></i> Location</th>
-            <th><i class="bi bi-box"></i> Capacity</th>
-            <th><i class="bi bi-bicycle"></i> Inventory</th>
-            <th class="text-center"><i class="bi bi-gear"></i> Actions</th>
+            <th><i class="bi bi-geo"></i> <span data-i18n="station.col.name">Name</span></th>
+            <th><i class="bi bi-pin-map"></i> <span data-i18n="station.col.location">Location</span></th>
+            <th><i class="bi bi-box"></i> <span data-i18n="station.col.capacity">Capacity</span></th>
+            <th><i class="bi bi-bicycle"></i> <span data-i18n="station.col.inventory">Inventory</span></th>
+            <th class="text-center"><i class="bi bi-gear"></i> <span data-i18n="station.col.actions">Actions</span></th>
         </tr>
     </thead>
 
@@ -45,7 +46,6 @@
             <tr>
                 <td class="fw-bold">@item.StationName</td>
                 <td>@item.Location</td>
-
                 <td>@item.Capacity</td>
 
                 <td>
@@ -57,7 +57,7 @@
                     <div class="progress" style="height: 20px;">
                         <div class="progress-bar
                             @(percent < 30 ? "bg-danger" :
-                                                                                        percent < 70 ? "bg-warning" : "bg-success")"
+                              percent < 70 ? "bg-warning" : "bg-success")"
                              style="width:@percent%">
                             @item.CurrentInventory
                         </div>

@@ -7,7 +7,7 @@
 <div class="container py-4" style="max-width: 600px;">
     <h2 class="fw-bold mb-4">
         <i class="bi bi-bicycle text-primary me-2"></i>
-        Chi tiết xe
+        <span data-i18n="vehicle.details.title">Chi tiết xe</span>
     </h2>
 
     <div class="card shadow border-0 rounded-4">
@@ -27,11 +27,11 @@
 
             <table class="table table-borderless">
                 <tr>
-                    <td><i class="bi bi-hash text-secondary me-2"></i><strong>Vehicle ID:</strong></td>
+                    <td><i class="bi bi-hash text-secondary me-2"></i><strong data-i18n="vehicle.details.id">Vehicle ID:</strong></td>
                     <td class="fw-bold text-primary">#@Model.VehicleID</td>
                 </tr>
                 <tr>
-                    <td><i class="bi bi-tag-fill text-primary me-2"></i><strong>Loại xe:</strong></td>
+                    <td><i class="bi bi-tag-fill text-primary me-2"></i><strong data-i18n="vehicle.details.type">Loại xe:</strong></td>
                     <td>
                         @if (Model.Type == "Standard Bike")
                         {
@@ -48,30 +48,33 @@
                     </td>
                 </tr>
                 <tr>
-                    <td><i class="bi bi-circle-fill text-secondary me-2"></i><strong>Trạng thái:</strong></td>
+                    <td><i class="bi bi-circle-fill text-secondary me-2"></i><strong data-i18n="vehicle.details.status">Trạng thái:</strong></td>
                     <td>
                         @if (Model.Status == "Available")
                         {
                             <span class="badge bg-success">
-                                <i class="bi bi-check-circle-fill me-1"></i> Available
+                                <i class="bi bi-check-circle-fill me-1"></i>
+                                <span data-i18n="vehicle.status.available">Available</span>
                             </span>
                         }
                         else if (Model.Status == "Rented")
                         {
                             <span class="badge bg-warning text-dark">
-                                <i class="bi bi-clock-fill me-1"></i> Đang được thuê
+                                <i class="bi bi-clock-fill me-1"></i>
+                                <span data-i18n="vehicle.status.rented">Đang được thuê</span>
                             </span>
                         }
                         else
                         {
                             <span class="badge bg-danger">
-                                <i class="bi bi-wrench-adjustable me-1"></i> @Model.Status
+                                <i class="bi bi-wrench-adjustable me-1"></i>
+                                <span data-i18n="vehicle.status.maintenance">@Model.Status</span>
                             </span>
                         }
                     </td>
                 </tr>
                 <tr>
-                    <td><i class="bi bi-cash-coin text-warning me-2"></i><strong>Giá thuê:</strong></td>
+                    <td><i class="bi bi-cash-coin text-warning me-2"></i><strong data-i18n="vehicle.details.price">Giá thuê:</strong></td>
                     <td>
                         <span class="fw-semibold">@Model.PricePerMinute.ToString("N0")</span>
                         <small class="text-muted">VND/phút</small>
@@ -81,22 +84,22 @@
                 <tr><td colspan="2"><hr class="my-1" /></td></tr>
 
                 <tr>
-                    <td><i class="bi bi-pin-map-fill text-danger me-2"></i><strong>Trạm:</strong></td>
+                    <td><i class="bi bi-pin-map-fill text-danger me-2"></i><strong data-i18n="vehicle.details.station">Trạm:</strong></td>
                     <td>@(Model.Station?.StationName ?? "Chưa có trạm")</td>
                 </tr>
                 <tr>
-                    <td><i class="bi bi-geo-alt-fill text-danger me-2"></i><strong>Địa điểm trạm:</strong></td>
+                    <td><i class="bi bi-geo-alt-fill text-danger me-2"></i><strong data-i18n="vehicle.details.location">Địa điểm trạm:</strong></td>
                     <td>@(Model.Station?.Location ?? "-")</td>
                 </tr>
                 <tr>
-                    <td><i class="bi bi-building-fill text-info me-2"></i><strong>Sức chứa trạm:</strong></td>
+                    <td><i class="bi bi-building-fill text-info me-2"></i><strong data-i18n="vehicle.details.capacity">Sức chứa trạm:</strong></td>
                     <td>
                         <i class="bi bi-bicycle me-1"></i>
                         @(Model.Station?.Capacity ?? 0) xe
                     </td>
                 </tr>
                 <tr>
-                    <td><i class="bi bi-boxes text-success me-2"></i><strong>Xe hiện có tại trạm:</strong></td>
+                    <td><i class="bi bi-boxes text-success me-2"></i><strong data-i18n="vehicle.details.inventory">Xe hiện có tại trạm:</strong></td>
                     <td>
                         <span class="badge bg-success">
                             <i class="bi bi-bicycle me-1"></i>
@@ -109,10 +112,12 @@
             <div class="d-flex gap-2 mt-4">
                 <a asp-action="Edit" asp-route-id="@Model.VehicleID"
                        class="btn btn-warning flex-fill py-3">
-                    <i class="bi bi-pencil-fill me-2"></i> Chỉnh sửa
+                    <i class="bi bi-pencil-fill me-2"></i>
+                    <span data-i18n="vehicle.details.edit">Chỉnh sửa</span>
                 </a>
                 <a asp-action="Index" class="btn btn-secondary flex-fill py-3">
-                    <i class="bi bi-arrow-left-circle me-2"></i> Quay lại
+                    <i class="bi bi-arrow-left-circle me-2"></i>
+                    <span data-i18n="vehicle.details.back">Quay lại</span>
                 </a>
             </div>
         </div>

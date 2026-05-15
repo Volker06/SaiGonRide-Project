@@ -4,7 +4,7 @@
     ViewData["Title"] = "Danh sách Rental";
 }
 
-<h1>Danh sách Rental</h1>
+<h1 data-i18n="rental.index.title">Danh sách Rental</h1>
 
 @if (TempData["Success"] != null)
 {
@@ -26,12 +26,12 @@
     <thead>
         <tr>
             <th>Rental ID</th>
-            <th>Loại xe</th>
-            <th>Giờ bắt đầu</th>
-            <th>Giờ kết thúc</th>
-            <th>Tổng tiền</th>
-            <th>Giảm giá</th>
-            <th>Trạng thái</th>
+            <th data-i18n="rental.col.type">Loại xe</th>
+            <th data-i18n="rental.col.start">Giờ bắt đầu</th>
+            <th data-i18n="rental.col.end">Giờ kết thúc</th>
+            <th data-i18n="rental.col.fare">Tổng tiền</th>
+            <th data-i18n="rental.col.discount">Giảm giá</th>
+            <th data-i18n="rental.col.status">Trạng thái</th>
             <th></th>
         </tr>
     </thead>
@@ -48,18 +48,18 @@
                 <td>
                     @if (item.Status == "Active")
                     {
-                        <span style="color:orange; font-weight:bold">🟡 Đang thuê</span>
+                        <span style="color:orange; font-weight:bold" data-i18n="rental.status.active">🟡 Đang thuê</span>
                     }
                     else
                     {
-                        <span style="color:green">✅ Hoàn thành</span>
+                        <span style="color:green" data-i18n="rental.status.done">✅ Hoàn thành</span>
                     }
                 </td>
                 <td>
                     @if (item.Status == "Active")
                     {
                         <a asp-action="ReturnVehicle" asp-route-rentalId="@item.RentalID"
-                           style="color:red; font-weight:bold">🔴 Trả xe</a>
+                           style="color:red; font-weight:bold" data-i18n="rental.return.btn">🔴 Trả xe</a>
                     }
                 </td>
             </tr>

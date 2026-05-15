@@ -1,4 +1,4 @@
-﻿@model SaigonRide.Models.Vehicle
+@model SaigonRide.Models.Vehicle
 
 @{
     ViewData["Title"] = "Confirm Rental";
@@ -6,7 +6,7 @@
 
 <div class="container" style="max-width: 600px;">
     <h2 class="mb-4">
-        <i class="bi bi-bicycle text-primary me-2"></i>Xác nhận thuê xe
+        <i class="bi bi-bicycle text-primary me-2"></i><span data-i18n="confirm.title">Confirm Rental</span>
     </h2>
 
     <div class="card shadow border-0 rounded-4 mb-4">
@@ -25,21 +25,21 @@
 
             <table class="table table-borderless">
                 <tr>
-                    <td><i class="bi bi-tag-fill text-secondary me-2"></i><strong>Loại xe:</strong></td>
+                    <td><i class="bi bi-tag-fill text-secondary me-2"></i><strong data-i18n="confirm.type">Vehicle Type:</strong></td>
                     <td>@Model.Type</td>
                 </tr>
                 <tr>
-                    <td><i class="bi bi-cash-coin text-secondary me-2"></i><strong>Giá thuê:</strong></td>
+                    <td><i class="bi bi-cash-coin text-secondary me-2"></i><strong data-i18n="confirm.price">Price per minute:</strong></td>
                     <td class="text-success fw-bold">
                         @Model.PricePerMinute.ToString("N0") VND/phút
                     </td>
                 </tr>
                 <tr>
-                    <td><i class="bi bi-geo-alt-fill text-secondary me-2"></i><strong>Trạm xuất phát:</strong></td>
+                    <td><i class="bi bi-geo-alt-fill text-secondary me-2"></i><strong data-i18n="confirm.station">Departure Station:</strong></td>
                     <td>@(Model.Station?.StationName ?? "N/A")</td>
                 </tr>
                 <tr>
-                    <td><i class="bi bi-pin-map-fill text-secondary me-2"></i><strong>Địa điểm:</strong></td>
+                    <td><i class="bi bi-pin-map-fill text-secondary me-2"></i><strong data-i18n="confirm.location">Location:</strong></td>
                     <td>@(Model.Station?.Location ?? "N/A")</td>
                 </tr>
             </table>
@@ -48,9 +48,9 @@
 
     <div class="alert alert-info d-flex align-items-start gap-2">
         <i class="bi bi-lightbulb-fill fs-5 mt-1"></i>
-        <div>
-            Giá sẽ được tính theo số phút thực tế khi bạn trả xe.
-            Giảm <strong>15%</strong> nếu trạm trả đang có số xe dưới 20% sức chứa!
+        <div data-i18n-html="confirm.info">
+            The fare will be calculated based on actual rental minutes.
+            Get <strong>15% off</strong> if the return station has less than 20% capacity!
         </div>
     </div>
 
@@ -60,11 +60,11 @@
 
         <div class="d-flex gap-3">
             <button type="submit" class="btn btn-success btn-lg flex-fill">
-                <i class="bi bi-check-circle-fill me-2"></i>Confirm Rental
+                <i class="bi bi-check-circle-fill me-2"></i><span data-i18n="confirm.btn">Confirm Rental</span>
             </button>
             <a asp-controller="Station" asp-action="SelectStation"
-                   class="btn btn-secondary btn-lg flex-fill">
-                <i class="bi bi-x-circle-fill me-2"></i>Cancel
+               class="btn btn-secondary btn-lg flex-fill">
+                <i class="bi bi-x-circle-fill me-2"></i><span data-i18n="confirm.cancel">Cancel</span>
             </a>
         </div>
     </form>

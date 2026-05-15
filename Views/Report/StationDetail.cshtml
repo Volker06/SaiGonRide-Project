@@ -1,4 +1,4 @@
-﻿@{
+@{
     ViewData["Title"] = "Station Detail";
 }
 
@@ -23,7 +23,7 @@
             <div class="card shadow-sm border-0">
                 <div class="card-body text-center">
                     <i class="bi bi-box-seam text-primary" style="font-size:2rem;"></i>
-                    <h6 class="mt-2 text-muted">Capacity</h6>
+                    <h6 class="mt-2 text-muted" data-i18n="stationdetail.capacity">Capacity</h6>
                     <h4 class="fw-bold">@ViewBag.Station.Capacity</h4>
                 </div>
             </div>
@@ -34,7 +34,7 @@
             <div class="card shadow-sm border-0">
                 <div class="card-body text-center">
                     <i class="bi bi-bicycle text-success" style="font-size:2rem;"></i>
-                    <h6 class="mt-2 text-muted">Current Vehicles</h6>
+                    <h6 class="mt-2 text-muted" data-i18n="stationdetail.vehicles">Current Vehicles</h6>
                     <h4 class="fw-bold">@ViewBag.Station.CurrentInventory</h4>
                 </div>
             </div>
@@ -45,7 +45,7 @@
             <div class="card shadow-sm border-0">
                 <div class="card-body text-center">
                     <i class="bi bi-cash-coin text-warning" style="font-size:2rem;"></i>
-                    <h6 class="mt-2 text-muted">Revenue</h6>
+                    <h6 class="mt-2 text-muted" data-i18n="stationdetail.revenue">Revenue</h6>
                     <h4 class="fw-bold">
                         @(((double)ViewBag.TotalRevenue).ToString("N0")) VND
                     </h4>
@@ -64,7 +64,7 @@
             <div class="card border-0 shadow-sm p-3">
                 <h6 class="text-muted">
                     <i class="bi bi-arrow-up-right-circle me-1"></i>
-                    Total Rentals
+                    <span data-i18n="stationdetail.totalrentals">Total Rentals</span>
                 </h6>
                 <h3 class="fw-bold text-primary">@ViewBag.TotalRentals</h3>
             </div>
@@ -74,7 +74,7 @@
             <div class="card border-0 shadow-sm p-3">
                 <h6 class="text-muted">
                     <i class="bi bi-arrow-down-left-circle me-1"></i>
-                    Total Returns
+                    <span data-i18n="stationdetail.totalreturns">Total Returns</span>
                 </h6>
                 <h3 class="fw-bold text-success">@ViewBag.TotalReturns</h3>
             </div>
@@ -84,7 +84,8 @@
 
     <div class="mt-4">
         <a asp-action="Index" class="btn btn-secondary">
-            <i class="bi bi-arrow-left"></i> Back
+            <i class="bi bi-arrow-left"></i>
+            <span data-i18n="stationdetail.back">Back</span>
         </a>
     </div>
 

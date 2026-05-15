@@ -1,12 +1,139 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\USER\\Downloads\\SaigonRide (2)\\SaigonRide\\SaigonRide\\SaigonRide\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{DB778F8A-3434-6B8C-37E9-26CE24418693}|SaigonRide.csproj|c:\\users\\user\\downloads\\saigonride (2)\\saigonride\\saigonride\\saigonride\\wwwroot\\js\\i18n.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{DB778F8A-3434-6B8C-37E9-26CE24418693}|SaigonRide.csproj|solutionrelative:wwwroot\\js\\i18n.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DB778F8A-3434-6B8C-37E9-26CE24418693}|SaigonRide.csproj|c:\\users\\user\\downloads\\saigonride (2)\\saigonride\\saigonride\\saigonride\\views\\rental\\return.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{DB778F8A-3434-6B8C-37E9-26CE24418693}|SaigonRide.csproj|solutionrelative:views\\rental\\return.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DB778F8A-3434-6B8C-37E9-26CE24418693}|SaigonRide.csproj|c:\\users\\user\\downloads\\saigonride (2)\\saigonride\\saigonride\\saigonride\\views\\rental\\paymentgateway.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{DB778F8A-3434-6B8C-37E9-26CE24418693}|SaigonRide.csproj|solutionrelative:views\\rental\\paymentgateway.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DB778F8A-3434-6B8C-37E9-26CE24418693}|SaigonRide.csproj|c:\\users\\user\\downloads\\saigonride (2)\\saigonride\\saigonride\\saigonride\\views\\auth\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{DB778F8A-3434-6B8C-37E9-26CE24418693}|SaigonRide.csproj|solutionrelative:views\\auth\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DB778F8A-3434-6B8C-37E9-26CE24418693}|SaigonRide.csproj|c:\\users\\user\\downloads\\saigonride (2)\\saigonride\\saigonride\\saigonride\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{DB778F8A-3434-6B8C-37E9-26CE24418693}|SaigonRide.csproj|solutionrelative:properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DB778F8A-3434-6B8C-37E9-26CE24418693}|SaigonRide.csproj|c:\\users\\user\\downloads\\saigonride (2)\\saigonride\\saigonride\\saigonride\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{DB778F8A-3434-6B8C-37E9-26CE24418693}|SaigonRide.csproj|solutionrelative:wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DB778F8A-3434-6B8C-37E9-26CE24418693}|SaigonRide.csproj|c:\\users\\user\\downloads\\saigonride (2)\\saigonride\\saigonride\\saigonride\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{DB778F8A-3434-6B8C-37E9-26CE24418693}|SaigonRide.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Return.cshtml",
+              "DocumentMoniker": "C:\\Users\\USER\\Downloads\\SaigonRide (2)\\SaigonRide\\SaigonRide\\SaigonRide\\Views\\Rental\\Return.cshtml",
+              "RelativeDocumentMoniker": "Views\\Rental\\Return.cshtml",
+              "ToolTip": "C:\\Users\\USER\\Downloads\\SaigonRide (2)\\SaigonRide\\SaigonRide\\SaigonRide\\Views\\Rental\\Return.cshtml",
+              "RelativeToolTip": "Views\\Rental\\Return.cshtml",
+              "ViewState": "AgIAAC0AAAAAAAAAAAAAADEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-05-15T08:24:15.812Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "PaymentGateway.cshtml",
+              "DocumentMoniker": "C:\\Users\\USER\\Downloads\\SaigonRide (2)\\SaigonRide\\SaigonRide\\SaigonRide\\Views\\Rental\\PaymentGateway.cshtml",
+              "RelativeDocumentMoniker": "Views\\Rental\\PaymentGateway.cshtml",
+              "ToolTip": "C:\\Users\\USER\\Downloads\\SaigonRide (2)\\SaigonRide\\SaigonRide\\SaigonRide\\Views\\Rental\\PaymentGateway.cshtml",
+              "RelativeToolTip": "Views\\Rental\\PaymentGateway.cshtml",
+              "ViewState": "AgIAABIAAAAAAAAAAAAAACQAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-05-15T08:24:05.125Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Register.cshtml",
+              "DocumentMoniker": "C:\\Users\\USER\\Downloads\\SaigonRide (2)\\SaigonRide\\SaigonRide\\SaigonRide\\Views\\Auth\\Register.cshtml",
+              "RelativeDocumentMoniker": "Views\\Auth\\Register.cshtml",
+              "ToolTip": "C:\\Users\\USER\\Downloads\\SaigonRide (2)\\SaigonRide\\SaigonRide\\SaigonRide\\Views\\Auth\\Register.cshtml",
+              "RelativeToolTip": "Views\\Auth\\Register.cshtml",
+              "ViewState": "AgIAAGMAAAAAAAAAAAAAAEgAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-05-15T08:23:17.919Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "site.css",
+              "DocumentMoniker": "C:\\Users\\USER\\Downloads\\SaigonRide (2)\\SaigonRide\\SaigonRide\\SaigonRide\\wwwroot\\css\\site.css",
+              "RelativeDocumentMoniker": "wwwroot\\css\\site.css",
+              "ToolTip": "C:\\Users\\USER\\Downloads\\SaigonRide (2)\\SaigonRide\\SaigonRide\\SaigonRide\\wwwroot\\css\\site.css",
+              "RelativeToolTip": "wwwroot\\css\\site.css",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2026-05-15T08:22:20.198Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "i18n.js",
+              "DocumentMoniker": "C:\\Users\\USER\\Downloads\\SaigonRide (2)\\SaigonRide\\SaigonRide\\SaigonRide\\wwwroot\\js\\i18n.js",
+              "RelativeDocumentMoniker": "wwwroot\\js\\i18n.js",
+              "ToolTip": "C:\\Users\\USER\\Downloads\\SaigonRide (2)\\SaigonRide\\SaigonRide\\SaigonRide\\wwwroot\\js\\i18n.js",
+              "RelativeToolTip": "wwwroot\\js\\i18n.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2026-05-15T08:19:13.142Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\USER\\Downloads\\SaigonRide (2)\\SaigonRide\\SaigonRide\\SaigonRide\\appsettings.json",
+              "RelativeDocumentMoniker": "appsettings.json",
+              "ToolTip": "C:\\Users\\USER\\Downloads\\SaigonRide (2)\\SaigonRide\\SaigonRide\\SaigonRide\\appsettings.json",
+              "RelativeToolTip": "appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-05-15T08:15:45.703Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "launchSettings.json",
+              "DocumentMoniker": "C:\\Users\\USER\\Downloads\\SaigonRide (2)\\SaigonRide\\SaigonRide\\SaigonRide\\Properties\\launchSettings.json",
+              "RelativeDocumentMoniker": "Properties\\launchSettings.json",
+              "ToolTip": "C:\\Users\\USER\\Downloads\\SaigonRide (2)\\SaigonRide\\SaigonRide\\SaigonRide\\Properties\\launchSettings.json",
+              "RelativeToolTip": "Properties\\launchSettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-05-15T08:06:14.353Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
     }
   ]
 }

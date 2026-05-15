@@ -1,4 +1,4 @@
-﻿@{
+@{
     ViewData["Title"] = "Thanh toán thành công";
     var method = ViewBag.Method as string;
     var amount = (double)ViewBag.Amount;
@@ -13,14 +13,14 @@
         </div>
     </div>
 
-    <h2 class="fw-bold text-success mb-2">Thanh toán thành công!</h2>
-    <p class="text-muted mb-4">Cảm ơn bạn đã sử dụng SaigonRide</p>
+    <h2 class="fw-bold text-success mb-2" data-i18n="paysuccess.title">Thanh toán thành công!</h2>
+    <p class="text-muted mb-4" data-i18n="paysuccess.thanks">Cảm ơn bạn đã sử dụng SaigonRide</p>
 
     <div class="card shadow border-0 rounded-4 mb-4 text-start">
         <div class="card-body p-4">
             <table class="table table-borderless mb-0">
                 <tr>
-                    <td><strong>Phương thức:</strong></td>
+                    <td><strong data-i18n="paysuccess.method">Phương thức:</strong></td>
                     <td>
                         @if (method == "Cash")
                         {
@@ -38,16 +38,17 @@
                     </td>
                 </tr>
                 <tr>
-                    <td><strong>Số tiền:</strong></td>
+                    <td><strong data-i18n="paysuccess.amount">Số tiền:</strong></td>
                     <td class="fw-bold text-success fs-5">
                         @amount.ToString("N0") VND
                     </td>
                 </tr>
                 <tr>
-                    <td><strong>Trạng thái:</strong></td>
+                    <td><strong data-i18n="paysuccess.status">Trạng thái:</strong></td>
                     <td>
                         <span class="badge bg-success">
-                            <i class="bi bi-check-circle me-1"></i>Thành công
+                            <i class="bi bi-check-circle me-1"></i>
+                            <span data-i18n="paysuccess.done">Thành công</span>
                         </span>
                     </td>
                 </tr>
@@ -56,6 +57,7 @@
     </div>
 
     <a asp-controller="Home" asp-action="Index" class="btn btn-primary btn-lg w-100">
-        <i class="bi bi-house-fill me-2"></i>Back to Home
+        <i class="bi bi-house-fill me-2"></i>
+        <span data-i18n="paysuccess.home">Trang chủ</span>
     </a>
 </div>
